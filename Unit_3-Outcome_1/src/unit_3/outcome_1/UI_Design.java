@@ -69,6 +69,7 @@ public class UI_Design extends javax.swing.JFrame {
 
         jLabel1.setText("Heading: Name, Class, Year");
 
+        recordNum.setToolTipText("Record Number");
         recordNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 recordNumActionPerformed(evt);
@@ -76,6 +77,7 @@ public class UI_Design extends javax.swing.JFrame {
         });
 
         nameText.setText("Name");
+        nameText.setToolTipText("Name");
         nameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameTextActionPerformed(evt);
@@ -83,8 +85,10 @@ public class UI_Design extends javax.swing.JFrame {
         });
 
         classText.setText("Class");
+        classText.setToolTipText("Class");
 
         yearText.setText("Year");
+        yearText.setToolTipText("Year");
 
         load.setText("Load");
         load.setToolTipText("Load Data");
@@ -95,6 +99,7 @@ public class UI_Design extends javax.swing.JFrame {
         });
 
         addRecord.setText("Add Record");
+        addRecord.setToolTipText("Add Record");
         addRecord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addRecordActionPerformed(evt);
@@ -102,8 +107,10 @@ public class UI_Design extends javax.swing.JFrame {
         });
 
         save.setText("Save");
+        save.setToolTipText("Save Records");
 
         exit.setText("Exit");
+        exit.setToolTipText("Exit");
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitActionPerformed(evt);
@@ -203,10 +210,11 @@ public class UI_Design extends javax.swing.JFrame {
                 splitArray[recordIndex] = s.split(delimiter);
                 s = reader.readLine();
                 recordIndex += 1;                
-            }
+            }            reader.close();
             input.close();
             reader.close();
-            
+           
+           
             for (int i = 0; i < splitArray.length; i++) {
                 recordNum.addItem(Integer.toString(i + 1));
                 generateArray.loadedData[i] = splitArray[i];

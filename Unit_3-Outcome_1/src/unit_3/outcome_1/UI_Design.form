@@ -108,6 +108,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Record Number"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="recordNumActionPerformed"/>
@@ -120,6 +121,7 @@
     <Component class="javax.swing.JTextField" name="nameText">
       <Properties>
         <Property name="text" type="java.lang.String" value="Name"/>
+        <Property name="toolTipText" type="java.lang.String" value="Name"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameTextActionPerformed"/>
@@ -131,11 +133,13 @@
     <Component class="javax.swing.JTextField" name="classText">
       <Properties>
         <Property name="text" type="java.lang.String" value="Class"/>
+        <Property name="toolTipText" type="java.lang.String" value="Class"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="yearText">
       <Properties>
         <Property name="text" type="java.lang.String" value="Year"/>
+        <Property name="toolTipText" type="java.lang.String" value="Year"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="load">
@@ -150,6 +154,7 @@
     <Component class="javax.swing.JButton" name="addRecord">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add Record"/>
+        <Property name="toolTipText" type="java.lang.String" value="Add Record"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addRecordActionPerformed"/>
@@ -158,11 +163,13 @@
     <Component class="javax.swing.JButton" name="save">
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
+        <Property name="toolTipText" type="java.lang.String" value="Save Records"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="exit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Exit"/>
+        <Property name="toolTipText" type="java.lang.String" value="Exit"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitActionPerformed"/>
