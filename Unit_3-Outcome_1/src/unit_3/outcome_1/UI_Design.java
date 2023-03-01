@@ -209,6 +209,7 @@ public class UI_Design extends javax.swing.JFrame {
             
             for (int i = 0; i < splitArray.length; i++) {
                 recordNum.addItem(Integer.toString(i + 1));
+                generateArray.loadedData[i] = splitArray[i];
                 System.out.println(Arrays.toString(splitArray[i]));
             }
         }
@@ -226,7 +227,9 @@ public class UI_Design extends javax.swing.JFrame {
     }//GEN-LAST:event_exitActionPerformed
 
     private void recordNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordNumActionPerformed
-        //nameText.setText(splitArray[]);
+        nameText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][0]);
+        classText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][1]);
+        yearText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][2]);
     }//GEN-LAST:event_recordNumActionPerformed
 
     /**
