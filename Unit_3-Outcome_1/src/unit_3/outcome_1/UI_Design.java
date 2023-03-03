@@ -250,7 +250,7 @@ public class UI_Design extends javax.swing.JFrame {
     }//GEN-LAST:event_exitActionPerformed
 
     private void recordNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordNumActionPerformed
-        // Load text fields based on the selected
+        // Load text fields based on the selected record index 
         nameText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][0]);
         classText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][1]);
         yearText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][2]);
