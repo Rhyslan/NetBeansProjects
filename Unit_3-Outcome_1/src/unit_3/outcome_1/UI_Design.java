@@ -37,6 +37,7 @@ public class UI_Design extends javax.swing.JFrame {
         // Globally accessable array
         private static String[][] loadedData;
         private static int lines = 0;
+        private static Path dataFile;
         
         // Globally accessable file length
         public static int fileLength(Path file) {
@@ -96,11 +97,6 @@ public class UI_Design extends javax.swing.JFrame {
         nameText.setEditable(false);
         nameText.setText("Name");
         nameText.setToolTipText("Name");
-        nameText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTextActionPerformed(evt);
-            }
-        });
 
         classText.setEditable(false);
         classText.setText("Class");
@@ -129,6 +125,12 @@ public class UI_Design extends javax.swing.JFrame {
 
         save.setText("Save");
         save.setToolTipText("Save Records");
+        save.setEnabled(false);
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
 
         exit.setText("Exit");
         exit.setToolTipText("Exit");
@@ -206,10 +208,6 @@ public class UI_Design extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextActionPerformed
-
     private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed
         // Path of the data file
         JFileChooser fileBrowser = new JFileChooser("C:/Users/dylan/School/Year 12/Software Development/NetBeansProjects/Unit_3-Outcome_1/src/unit_3/outcome_1/");
@@ -219,6 +217,7 @@ public class UI_Design extends javax.swing.JFrame {
         
         if (r == JFileChooser.APPROVE_OPTION) {
             file = Paths.get(fileBrowser.getSelectedFile().getAbsolutePath());
+            generateArray.dataFile = file;
         }
         
         String s;
@@ -291,6 +290,7 @@ public class UI_Design extends javax.swing.JFrame {
         for (int i = 0; i < fullData.length; i++) {
             System.out.println(Arrays.toString(generateArray.loadedData[i]));
         }
+        save.setEnabled(true);
     }//GEN-LAST:event_addRecordActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
@@ -303,6 +303,24 @@ public class UI_Design extends javax.swing.JFrame {
         classText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][1]);
         yearText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][2]);
     }//GEN-LAST:event_recordNumActionPerformed
+
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        try {
+            FileWriter writer = new FileWriter(generateArray.dataFile.toString());
+            for (int i = 0; i < generateArray.loadedData.length; i++) {
+                writer.write(Arrays.toString(generateArray.loadedData[i]));
+                writer.write("\n");
+            }
+            writer.close();
+            
+            JFrame frame = new JFrame();
+            JOptionPane.showMessageDialog(frame, "File Saved Successfully");  
+        }
+        catch (IOException e) {
+            System.out.println("Message: " + e);
+        }
+        save.setEnabled(false);
+    }//GEN-LAST:event_saveActionPerformed
 
     /**
      * @param args the command line arguments

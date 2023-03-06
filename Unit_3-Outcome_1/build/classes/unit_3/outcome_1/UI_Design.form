@@ -124,9 +124,6 @@
         <Property name="text" type="java.lang.String" value="Name"/>
         <Property name="toolTipText" type="java.lang.String" value="Name"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameTextActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
@@ -168,7 +165,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
         <Property name="toolTipText" type="java.lang.String" value="Save Records"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="exit">
       <Properties>
