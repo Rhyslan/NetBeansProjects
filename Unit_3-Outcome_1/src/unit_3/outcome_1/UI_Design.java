@@ -87,6 +87,7 @@ public class UI_Design extends javax.swing.JFrame {
 
         jLabel1.setText("Heading: Name, Class, Year");
 
+        recordNum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "hi" }));
         recordNum.setToolTipText("Record Number");
         recordNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,7 +222,7 @@ public class UI_Design extends javax.swing.JFrame {
         }
         
         String s;
-        String delimiter = ",";
+        String delimiter = ", ";
         
         try {
             int lines = generateArray.fileLength(file);
@@ -247,6 +248,8 @@ public class UI_Design extends javax.swing.JFrame {
             input.close();
             reader.close();
            
+            recordNum.removeAllItems();
+            
             // Assign the comboBox options and the global array to the loaded data
             for (int i = 0; i < splitArray.length; i++) {
                 recordNum.addItem(Integer.toString(i + 1));
@@ -287,9 +290,15 @@ public class UI_Design extends javax.swing.JFrame {
         generateArray.loadedData = fullData;
         
         System.out.println();
-        for (int i = 0; i < fullData.length; i++) {
+        
+        recordNum.removeAllItems();
+
+        // Assign the comboBox options and the global array to the loaded data
+        for (int i = 0; i < generateArray.loadedData.length; i++) {
+            recordNum.addItem(Integer.toString(i + 1));
             System.out.println(Arrays.toString(generateArray.loadedData[i]));
         }
+        
         save.setEnabled(true);
     }//GEN-LAST:event_addRecordActionPerformed
 
@@ -307,8 +316,13 @@ public class UI_Design extends javax.swing.JFrame {
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         try {
             FileWriter writer = new FileWriter(generateArray.dataFile.toString());
+            String data;
+                    
             for (int i = 0; i < generateArray.loadedData.length; i++) {
-                writer.write(Arrays.toString(generateArray.loadedData[i]));
+                data = Arrays.toString(generateArray.loadedData[i]);
+                data = data.substring(1, data.length() - 1);
+                
+                writer.write(data);
                 writer.write("\n");
             }
             writer.close();

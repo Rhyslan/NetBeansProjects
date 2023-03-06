@@ -1,4 +1,4 @@
-Frank,2,2023
-Shelby,4,2022
-Bob,8,2018
-Dylan,12,4021
+Frank, 2, 2023
+Shelby, 4, 2022
+Bob, 8, 2018
+Dylan, 12, 4021
