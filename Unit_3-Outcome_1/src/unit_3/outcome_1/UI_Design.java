@@ -13,6 +13,7 @@ package unit_3.outcome_1;
 import java.nio.file.*;
 import java.io.*;
 import java.util.Arrays;
+import javax.swing.JFileChooser;
 
 public class UI_Design extends javax.swing.JFrame {
 
@@ -33,29 +34,33 @@ public class UI_Design extends javax.swing.JFrame {
     class generateArray{
         // Globally accessable array
         private static String[][] loadedData;
+        private static int lines = 0;
         
-        // Globally accessable array creation
-        public static String[][] createArray(Path file){
+        // Globally accessable file length
+        public static int fileLength(Path file) {
+            // Number of lines to be in the array
             try {
                 // Load the file parsed through the parameter
                 InputStream input = new BufferedInputStream(Files.newInputStream(file));
-                BufferedReader reader = new BufferedReader(new InputStreamReader(input)); 
-                
-                // Number of lines to be in the array
-                int lines = 0;
+                BufferedReader reader = new BufferedReader(new InputStreamReader(input));
                 
                 // Updates lines to length of file
                 while (reader.readLine() != null) lines++;
                 
                 input.close();
                 reader.close();
-                
-                // Set the length of the array
-                loadedData = new String[lines][3]; 
             }
             catch (IOException e) {
                 System.out.println("Message: " + e);
             }
+            return lines;
+        }
+        
+        // Globally accessable array creation
+        public static String[][] createArray(Path file, int length){           
+            // Set the length of the array
+            loadedData = new String[length][3]; 
+            
             return loadedData;
         }
     }
@@ -86,6 +91,7 @@ public class UI_Design extends javax.swing.JFrame {
             }
         });
 
+        nameText.setEditable(false);
         nameText.setText("Name");
         nameText.setToolTipText("Name");
         nameText.addActionListener(new java.awt.event.ActionListener() {
@@ -94,9 +100,11 @@ public class UI_Design extends javax.swing.JFrame {
             }
         });
 
+        classText.setEditable(false);
         classText.setText("Class");
         classText.setToolTipText("Class");
 
+        yearText.setEditable(false);
         yearText.setText("Year");
         yearText.setToolTipText("Year");
 
@@ -201,18 +209,25 @@ public class UI_Design extends javax.swing.JFrame {
 
     private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed
         // Path of the data file
-        Path file = Paths.get("C:/Users/dylan/School/Year 12/Software Development/NetBeansProjects/Unit_3-Outcome_1/src/unit_3/outcome_1/record.txt");
+        JFileChooser fileBrowser = new JFileChooser("C:/Users/dylan/School/Year 12/Software Development/NetBeansProjects/Unit_3-Outcome_1/src/unit_3/outcome_1/");
+        int r = fileBrowser.showOpenDialog(null);
+        Path file = null;
+        
+        if (r == JFileChooser.APPROVE_OPTION) {
+            file = Paths.get(fileBrowser.getSelectedFile().getAbsolutePath());
+        }
         
         String s;
         String delimiter = ",";
         
         try {
+            int lines = generateArray.fileLength(file);
             // Load and set up a reader
-            InputStream input = new BufferedInputStream(Files.newInputStream(file));
+            BufferedInputStream input = new BufferedInputStream(Files.newInputStream(file));
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
             
             // Use global array creation
-            String[][] splitArray = generateArray.createArray(file);
+            String[][] splitArray = generateArray.createArray(file, lines);
             int recordIndex = 0;
             
             // Blank line and read first line of the file
@@ -242,7 +257,7 @@ public class UI_Design extends javax.swing.JFrame {
     }//GEN-LAST:event_loadActionPerformed
 
     private void addRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecordActionPerformed
-        // TODO add your handling code here:
+        String[][] newArray = new String[generateArray.lines + 1][];
     }//GEN-LAST:event_addRecordActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
