@@ -14,6 +14,8 @@ import java.nio.file.*;
 import java.io.*;
 import java.util.Arrays;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class UI_Design extends javax.swing.JFrame {
 
@@ -57,7 +59,7 @@ public class UI_Design extends javax.swing.JFrame {
         }
         
         // Globally accessable array creation
-        public static String[][] createArray(Path file, int length){           
+        public static String[][] createArray(int length){           
             // Set the length of the array
             loadedData = new String[length][3]; 
             
@@ -118,6 +120,7 @@ public class UI_Design extends javax.swing.JFrame {
 
         addRecord.setText("Add Record");
         addRecord.setToolTipText("Add Record");
+        addRecord.setEnabled(false);
         addRecord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addRecordActionPerformed(evt);
@@ -210,6 +213,7 @@ public class UI_Design extends javax.swing.JFrame {
     private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed
         // Path of the data file
         JFileChooser fileBrowser = new JFileChooser("C:/Users/dylan/School/Year 12/Software Development/NetBeansProjects/Unit_3-Outcome_1/src/unit_3/outcome_1/");
+        fileBrowser.setSelectedFile(new File("record.txt"));
         int r = fileBrowser.showOpenDialog(null);
         Path file = null;
         
@@ -227,7 +231,7 @@ public class UI_Design extends javax.swing.JFrame {
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
             
             // Use global array creation
-            String[][] splitArray = generateArray.createArray(file, lines);
+            String[][] splitArray = generateArray.createArray(lines);
             int recordIndex = 0;
             
             // Blank line and read first line of the file
@@ -254,10 +258,39 @@ public class UI_Design extends javax.swing.JFrame {
         catch (IOException e) {
             System.out.println("Message: " + e);
         }
+        addRecord.setEnabled(true);
     }//GEN-LAST:event_loadActionPerformed
 
     private void addRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecordActionPerformed
-        String[][] newArray = new String[generateArray.lines + 1][];
+        JFrame frame = new JFrame();
+        String newName = (String)JOptionPane.showInputDialog(frame, "Name:");
+        String newClass = (String)JOptionPane.showInputDialog(frame, "Class:");
+        String newYear = (String)JOptionPane.showInputDialog(frame, "Year:");
+                
+        String[][] oldData = generateArray.loadedData;
+        
+        String[][] newData = {{newName, newClass, newYear}};
+               
+        //generateArray.loadedData = generateArray.createArray(generateArray.lines++);
+        
+        String[][] fullData = generateArray.createArray(generateArray.lines + 1);
+        
+        for (int i = 0; i < fullData.length; i++) {
+            if (i < fullData.length - 1) {
+                fullData[i] = oldData[i];
+            }
+            else if (i == fullData.length - 1) {
+                fullData[i] = newData[0];
+            }
+        }
+        
+        generateArray.loadedData = generateArray.createArray(generateArray.lines + 1);
+        generateArray.loadedData = fullData;
+        
+        System.out.println();
+        for (int i = 0; i < fullData.length; i++) {
+            System.out.println(Arrays.toString(generateArray.loadedData[i]));
+        }
     }//GEN-LAST:event_addRecordActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
