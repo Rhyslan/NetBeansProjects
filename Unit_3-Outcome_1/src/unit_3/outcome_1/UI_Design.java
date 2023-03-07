@@ -16,6 +16,7 @@ import java.util.Arrays;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class UI_Design extends javax.swing.JFrame {
 
@@ -42,6 +43,7 @@ public class UI_Design extends javax.swing.JFrame {
         // Globally accessable file length
         public static int fileLength(Path file) {
             // Number of lines to be in the array
+            lines = 0;
             try {
                 // Load the file parsed through the parameter
                 InputStream input = new BufferedInputStream(Files.newInputStream(file));
@@ -87,7 +89,7 @@ public class UI_Design extends javax.swing.JFrame {
 
         jLabel1.setText("Heading: Name, Class, Year");
 
-        recordNum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "hi" }));
+        recordNum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empty" }));
         recordNum.setToolTipText("Record Number");
         recordNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,15 +98,15 @@ public class UI_Design extends javax.swing.JFrame {
         });
 
         nameText.setEditable(false);
-        nameText.setText("Name");
+        nameText.setText("Empty");
         nameText.setToolTipText("Name");
 
         classText.setEditable(false);
-        classText.setText("Class");
+        classText.setText("Empty");
         classText.setToolTipText("Class");
 
         yearText.setEditable(false);
-        yearText.setText("Year");
+        yearText.setText("Empty");
         yearText.setToolTipText("Year");
 
         load.setText("Load");
@@ -213,6 +215,8 @@ public class UI_Design extends javax.swing.JFrame {
         // Path of the data file
         JFileChooser fileBrowser = new JFileChooser("C:/Users/dylan/School/Year 12/Software Development/NetBeansProjects/Unit_3-Outcome_1/src/unit_3/outcome_1/");
         fileBrowser.setSelectedFile(new File("record.txt"));
+        fileBrowser.addChoosableFileFilter(new FileNameExtensionFilter("Text Documents", "txt"));
+        fileBrowser.setAcceptAllFileFilterUsed(false);
         int r = fileBrowser.showOpenDialog(null);
         Path file = null;
         
@@ -266,8 +270,13 @@ public class UI_Design extends javax.swing.JFrame {
     private void addRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecordActionPerformed
         JFrame frame = new JFrame();
         String newName = (String)JOptionPane.showInputDialog(frame, "Name:");
+        if ((newName == null)) return;
+        
         String newClass = (String)JOptionPane.showInputDialog(frame, "Class:");
+        if ((newClass == null)) return;
+        
         String newYear = (String)JOptionPane.showInputDialog(frame, "Year:");
+        if ((newYear == null)) return;
                 
         String[][] oldData = generateArray.loadedData;
         
@@ -308,9 +317,11 @@ public class UI_Design extends javax.swing.JFrame {
 
     private void recordNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordNumActionPerformed
         // Load text fields based on the selected record index 
-        nameText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][0]);
-        classText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][1]);
-        yearText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][2]);
+        if (recordNum.getSelectedItem() != null) {
+            nameText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][0]);
+            classText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][1]);
+            yearText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][2]);
+        }
     }//GEN-LAST:event_recordNumActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed

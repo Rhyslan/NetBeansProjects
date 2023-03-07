@@ -1,4 +1,5 @@
-Frank, 2, 2023
-Shelby, 4, 2022
-Bob, 8, 2018
-Dylan, 12, 4021
+Frank, Atomic Science, 10
+Shelby, English As A Fifth Language, 13
+Bob, Water White's Chemistry, 3
+Dylan, Molecular Cell Biology, 4021
+Logan, Neuro Science, 3

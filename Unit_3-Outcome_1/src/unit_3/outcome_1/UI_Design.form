@@ -107,7 +107,7 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="hi"/>
+            <StringItem index="0" value="Empty"/>
           </StringArray>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Record Number"/>
@@ -123,7 +123,7 @@
     <Component class="javax.swing.JTextField" name="nameText">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="Name"/>
+        <Property name="text" type="java.lang.String" value="Empty"/>
         <Property name="toolTipText" type="java.lang.String" value="Name"/>
       </Properties>
       <AuxValues>
@@ -133,14 +133,14 @@
     <Component class="javax.swing.JTextField" name="classText">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="Class"/>
+        <Property name="text" type="java.lang.String" value="Empty"/>
         <Property name="toolTipText" type="java.lang.String" value="Class"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="yearText">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="Year"/>
+        <Property name="text" type="java.lang.String" value="Empty"/>
         <Property name="toolTipText" type="java.lang.String" value="Year"/>
       </Properties>
     </Component>
