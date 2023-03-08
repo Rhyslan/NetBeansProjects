@@ -318,9 +318,9 @@ public class UI_Design extends javax.swing.JFrame {
     private void recordNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordNumActionPerformed
         // Load text fields based on the selected record index 
         if (recordNum.getSelectedItem() != null) {
-            nameText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][0]);
-            classText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][1]);
-            yearText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][2]);
+            nameText.setText(generateArray.loadedData[recordNum.getSelectedIndex()][0]);
+            classText.setText(generateArray.loadedData[recordNum.getSelectedIndex()][1]);
+            yearText.setText(generateArray.loadedData[recordNum.getSelectedIndex()][2]);
         }
     }//GEN-LAST:event_recordNumActionPerformed
 
