@@ -281,8 +281,6 @@ public class UI_Design extends javax.swing.JFrame {
         String[][] oldData = generateArray.loadedData;
         
         String[][] newData = {{newName, newClass, newYear}};
-               
-        //generateArray.loadedData = generateArray.createArray(generateArray.lines++);
         
         String[][] fullData = generateArray.createArray(generateArray.lines + 1);
         
