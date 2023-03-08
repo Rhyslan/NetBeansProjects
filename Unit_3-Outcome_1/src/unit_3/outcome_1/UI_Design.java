@@ -74,6 +74,7 @@ public class UI_Design extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToggleButton1 = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         recordNum = new javax.swing.JComboBox<>();
         nameText = new javax.swing.JTextField();
@@ -84,6 +85,9 @@ public class UI_Design extends javax.swing.JFrame {
         save = new javax.swing.JButton();
         exit = new javax.swing.JButton();
         recordNumber = new javax.swing.JLabel();
+        editRecord = new javax.swing.JButton();
+
+        jToggleButton1.setText("Edit Record");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,6 +149,15 @@ public class UI_Design extends javax.swing.JFrame {
 
         recordNumber.setText("Record Number");
 
+        editRecord.setText("Edit Record");
+        editRecord.setToolTipText("Edit Record");
+        editRecord.setEnabled(false);
+        editRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editRecordActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,20 +166,6 @@ public class UI_Design extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(load)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(addRecord)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(save)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(exit)))
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,34 +176,52 @@ public class UI_Design extends javax.swing.JFrame {
                         .addComponent(recordNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(classText, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nameText, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addComponent(classText, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                        .addComponent(yearText, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45))))
+                        .addComponent(yearText, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                        .addContainerGap(45, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(addRecord)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(save)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(exit)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(editRecord)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
                 .addGap(24, 24, 24)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(recordNumber)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(recordNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(yearText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(classText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(classText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(load)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editRecord)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addRecord)
                     .addComponent(exit)
-                    .addComponent(save))
+                    .addComponent(save)
+                    .addComponent(addRecord))
                 .addContainerGap())
         );
 
@@ -265,6 +282,7 @@ public class UI_Design extends javax.swing.JFrame {
             System.out.println("Message: " + e);
         }
         addRecord.setEnabled(true);
+        editRecord.setEnabled(true);
     }//GEN-LAST:event_loadActionPerformed
 
     private void addRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecordActionPerformed
@@ -318,9 +336,9 @@ public class UI_Design extends javax.swing.JFrame {
     private void recordNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordNumActionPerformed
         // Load text fields based on the selected record index 
         if (recordNum.getSelectedItem() != null) {
-            nameText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][0]);
-            classText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][1]);
-            yearText.setText(generateArray.loadedData[Integer.parseInt((String)recordNum.getSelectedItem()) - 1][2]);
+            nameText.setText(generateArray.loadedData[recordNum.getSelectedIndex()][0]);
+            classText.setText(generateArray.loadedData[recordNum.getSelectedIndex()][1]);
+            yearText.setText(generateArray.loadedData[recordNum.getSelectedIndex()][2]);
         }
     }//GEN-LAST:event_recordNumActionPerformed
 
@@ -346,6 +364,26 @@ public class UI_Design extends javax.swing.JFrame {
         }
         save.setEnabled(false);
     }//GEN-LAST:event_saveActionPerformed
+
+    private void editRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editRecordActionPerformed
+        JFrame frame = new JFrame();
+        String newName = (String)JOptionPane.showInputDialog(frame, "Name:", generateArray.loadedData[recordNum.getSelectedIndex()][0]);
+        if ((newName == null)) return;
+        generateArray.loadedData[recordNum.getSelectedIndex()][0] = newName;
+        
+        String newClass = (String)JOptionPane.showInputDialog(frame, "Class:", generateArray.loadedData[recordNum.getSelectedIndex()][1]);
+        if ((newClass == null)) return;
+        generateArray.loadedData[recordNum.getSelectedIndex()][1] = newClass;
+        
+        String newYear = (String)JOptionPane.showInputDialog(frame, "Year:", generateArray.loadedData[recordNum.getSelectedIndex()][2]);
+        if ((newYear == null)) return;
+        generateArray.loadedData[recordNum.getSelectedIndex()][2] = newYear;
+        
+        recordNum.setSelectedIndex(recordNum.getSelectedIndex());
+        
+        save.setEnabled(true);
+        editRecord.setEnabled(false);
+    }//GEN-LAST:event_editRecordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -385,8 +423,10 @@ public class UI_Design extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addRecord;
     private javax.swing.JTextField classText;
+    private javax.swing.JButton editRecord;
     private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton load;
     public javax.swing.JTextField nameText;
     private javax.swing.JComboBox<String> recordNum;
