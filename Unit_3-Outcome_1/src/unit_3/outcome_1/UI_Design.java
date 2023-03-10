@@ -39,6 +39,7 @@ public class UI_Design extends javax.swing.JFrame {
         private static String[][] loadedData;
         private static int lines = 0;
         private static Path dataFile;
+        private static boolean saved = true;
         
         // Globally accessable file length
         public static int fileLength(Path file) {
@@ -86,12 +87,26 @@ public class UI_Design extends javax.swing.JFrame {
         exit = new javax.swing.JButton();
         recordNumber = new javax.swing.JLabel();
         editRecord = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        nameSort = new javax.swing.JButton();
+        yearSort = new javax.swing.JButton();
+        classSort = new javax.swing.JButton();
 
         jToggleButton1.setText("Edit Record");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                exitListener(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Heading: Name, Class, Year");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
         recordNum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empty" }));
         recordNum.setToolTipText("Record Number");
@@ -100,18 +115,22 @@ public class UI_Design extends javax.swing.JFrame {
                 recordNumActionPerformed(evt);
             }
         });
+        getContentPane().add(recordNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
 
         nameText.setEditable(false);
         nameText.setText("Empty");
         nameText.setToolTipText("Name");
+        getContentPane().add(nameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 70, -1));
 
         classText.setEditable(false);
         classText.setText("Empty");
         classText.setToolTipText("Class");
+        getContentPane().add(classText, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 70, -1));
 
         yearText.setEditable(false);
         yearText.setText("Empty");
         yearText.setToolTipText("Year");
+        getContentPane().add(yearText, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 70, -1));
 
         load.setText("Load");
         load.setToolTipText("Load Data");
@@ -120,6 +139,7 @@ public class UI_Design extends javax.swing.JFrame {
                 loadActionPerformed(evt);
             }
         });
+        getContentPane().add(load, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
         addRecord.setText("Add Record");
         addRecord.setToolTipText("Add Record");
@@ -129,6 +149,7 @@ public class UI_Design extends javax.swing.JFrame {
                 addRecordActionPerformed(evt);
             }
         });
+        getContentPane().add(addRecord, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
 
         save.setText("Save");
         save.setToolTipText("Save Records");
@@ -138,6 +159,7 @@ public class UI_Design extends javax.swing.JFrame {
                 saveActionPerformed(evt);
             }
         });
+        getContentPane().add(save, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, -1, -1));
 
         exit.setText("Exit");
         exit.setToolTipText("Exit");
@@ -146,8 +168,10 @@ public class UI_Design extends javax.swing.JFrame {
                 exitActionPerformed(evt);
             }
         });
+        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, -1, -1));
 
         recordNumber.setText("Record Number");
+        getContentPane().add(recordNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
 
         editRecord.setText("Edit Record");
         editRecord.setToolTipText("Edit Record");
@@ -157,73 +181,35 @@ public class UI_Design extends javax.swing.JFrame {
                 editRecordActionPerformed(evt);
             }
         });
+        getContentPane().add(editRecord, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(load)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(recordNumber)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(recordNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(nameText, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addComponent(classText, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                        .addComponent(yearText, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                        .addContainerGap(45, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(addRecord)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(save)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(exit)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(editRecord)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(recordNumber)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(recordNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(yearText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(classText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addComponent(load)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(editRecord)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(exit)
-                    .addComponent(save)
-                    .addComponent(addRecord))
-                .addContainerGap())
-        );
+        jLabel2.setText("Name");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
+
+        jLabel3.setText("Class");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
+
+        jLabel4.setText("Year");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
+
+        nameSort.setText("Sort");
+        nameSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameSortActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nameSort, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 70, -1));
+
+        yearSort.setText("Sort");
+        getContentPane().add(yearSort, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 70, -1));
+
+        classSort.setText("Sort");
+        classSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classSortActionPerformed(evt);
+            }
+        });
+        getContentPane().add(classSort, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 70, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -281,19 +267,20 @@ public class UI_Design extends javax.swing.JFrame {
         catch (IOException e) {
             System.out.println("Message: " + e);
         }
+        
+        
         addRecord.setEnabled(true);
         editRecord.setEnabled(true);
     }//GEN-LAST:event_loadActionPerformed
 
     private void addRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecordActionPerformed
-        JFrame frame = new JFrame();
-        String newName = (String)JOptionPane.showInputDialog(frame, "Name:");
+        String newName = (String)JOptionPane.showInputDialog(null, "Name:");
         if ((newName == null)) return;
         
-        String newClass = (String)JOptionPane.showInputDialog(frame, "Class:");
+        String newClass = (String)JOptionPane.showInputDialog(null, "Class:");
         if ((newClass == null)) return;
         
-        String newYear = (String)JOptionPane.showInputDialog(frame, "Year:");
+        String newYear = (String)JOptionPane.showInputDialog(null, "Year:");
         if ((newYear == null)) return;
                 
         String[][] oldData = generateArray.loadedData;
@@ -326,11 +313,17 @@ public class UI_Design extends javax.swing.JFrame {
             System.out.println(Arrays.toString(generateArray.loadedData[i]));
         }
         
+        generateArray.saved = false;
         save.setEnabled(true);
     }//GEN-LAST:event_addRecordActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-        System.exit(0);
+        if (generateArray.saved == false) {
+            int confirmExit = (int) JOptionPane.showConfirmDialog(null, "Unsaved records!\nDo you wish to proceed?", "Unsaved Records", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+            if (confirmExit == 0) System.exit(0);
+        } else {
+            System.exit(0);
+        }
     }//GEN-LAST:event_exitActionPerformed
 
     private void recordNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordNumActionPerformed
@@ -362,6 +355,8 @@ public class UI_Design extends javax.swing.JFrame {
         catch (IOException e) {
             System.out.println("Message: " + e);
         }
+        
+        generateArray.saved = true;
         save.setEnabled(false);
     }//GEN-LAST:event_saveActionPerformed
 
@@ -384,6 +379,23 @@ public class UI_Design extends javax.swing.JFrame {
         save.setEnabled(true);
         editRecord.setEnabled(false);
     }//GEN-LAST:event_editRecordActionPerformed
+
+    private void exitListener(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_exitListener
+        if (generateArray.saved == false) {
+            int confirmExit = (int) JOptionPane.showConfirmDialog(null, "Unsaved records!\nDo you wish to proceed?", "Unsaved Records", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+            if (confirmExit == 0) System.exit(0);
+        } else {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_exitListener
+
+    private void nameSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameSortActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameSortActionPerformed
+
+    private void classSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classSortActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_classSortActionPerformed
 
     /**
      * @param args the command line arguments
@@ -422,16 +434,22 @@ public class UI_Design extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addRecord;
+    private javax.swing.JButton classSort;
     private javax.swing.JTextField classText;
     private javax.swing.JButton editRecord;
     private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton load;
-    public javax.swing.JTextField nameText;
+    private javax.swing.JButton nameSort;
+    private javax.swing.JTextField nameText;
     private javax.swing.JComboBox<String> recordNum;
     private javax.swing.JLabel recordNumber;
     private javax.swing.JButton save;
+    private javax.swing.JButton yearSort;
     private javax.swing.JTextField yearText;
     // End of variables declaration//GEN-END:variables
 }
