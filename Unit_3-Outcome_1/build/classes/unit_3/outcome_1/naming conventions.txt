@@ -4,13 +4,14 @@ Double = dblName
 String = strName
 Boolean = blnName
 
-Multi Dimensional Array (String) = smaName
+Multi Dimensional Array (String) = masName
 
 Path = pthName
 
 InputStream = ismName
 BufferedReader = bfrName
 BufferedInputStream = bisName
+FileWriter = fwrName
 
 IOException = ioeName
 

@@ -12,20 +12,51 @@
             </test-roots>
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>bfrName</word>
             <word>bfrVariable</word>
+            <word>bisName</word>
+            <word>blnName</word>
             <word>blnVariable</word>
+            <word>btnName</word>
+            <word>BufferedInputStream</word>
             <word>BufferedReader</word>
+            <word>clsName</word>
+            <word>cmbName</word>
             <word>cmbVariable</word>
+            <word>dblName</word>
             <word>dblVariable</word>
+            <word>Dunny</word>
+            <word>FileWriter</word>
+            <word>floName</word>
             <word>floVariable</word>
+            <word>fwrName</word>
             <word>InputStream</word>
+            <word>intName</word>
             <word>intVariable</word>
+            <word>ioeName</word>
             <word>ioeVariable</word>
             <word>IOException</word>
+            <word>ismName</word>
             <word>ismVariable</word>
+            <word>jfcName</word>
+            <word>JFileChooser</word>
+            <word>lblName</word>
+            <word>length'</word>
+            <word>lsnName</word>
+            <word>masName</word>
+            <word>Maths</word>
+            <word>mthName</word>
+            <word>Musgrave</word>
+            <word>Neuro</word>
+            <word>pthName</word>
             <word>pthVariable</word>
             <word>smaVariable</word>
+            <word>strName</word>
             <word>strVariable</word>
+            <word>txt</word>
+            <word>txt'</word>
+            <word>txtName</word>
+            <word>utilising</word>
         </spellchecker-wordlist>
     </configuration>
 </project>
