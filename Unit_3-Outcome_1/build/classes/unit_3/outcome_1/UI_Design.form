@@ -9,7 +9,7 @@
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <Events>
-    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="exitListener"/>
+    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="lsnWindowClosing"/>
   </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -28,23 +28,23 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="load" min="-2" max="-2" attributes="0"/>
+              <Component id="btnLoad" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblHeading" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="addRecord" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAddRecord" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="save" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnSave" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="exit" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnExit" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -53,19 +53,19 @@
               <EmptySpace pref="49" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="recordNumber" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblRecordNumber" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="recordNum" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbRecordIndex" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="nameText" min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="txtName" min="-2" pref="71" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="classText" min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="txtClass" min="-2" pref="71" max="-2" attributes="0"/>
                       <EmptySpace pref="53" max="32767" attributes="0"/>
-                      <Component id="yearText" min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="txtYear" min="-2" pref="71" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -76,24 +76,24 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="lblHeading" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-              <Component id="recordNumber" min="-2" max="-2" attributes="0"/>
+              <Component id="lblRecordNumber" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="recordNum" min="-2" max="-2" attributes="0"/>
+              <Component id="cmbRecordIndex" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="yearText" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="classText" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="nameText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtYear" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtClass" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="73" max="32767" attributes="0"/>
-              <Component id="load" min="-2" max="-2" attributes="0"/>
+              <Component id="btnLoad" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="addRecord" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="exit" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="save" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAddRecord" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnExit" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -101,12 +101,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lblHeading">
       <Properties>
         <Property name="text" type="java.lang.String" value="Heading: Name, Class, Year"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="recordNum">
+    <Component class="javax.swing.JComboBox" name="cmbRecordIndex">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
@@ -116,14 +116,14 @@
         <Property name="toolTipText" type="java.lang.String" value="Record Number"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="recordNumActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbRecordIndexActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="UI_Design_recordNum"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="nameText">
+    <Component class="javax.swing.JTextField" name="txtName">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="Empty"/>
@@ -133,59 +133,59 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="classText">
+    <Component class="javax.swing.JTextField" name="txtClass">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="Empty"/>
         <Property name="toolTipText" type="java.lang.String" value="Class"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="yearText">
+    <Component class="javax.swing.JTextField" name="txtYear">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="Empty"/>
         <Property name="toolTipText" type="java.lang.String" value="Year"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="load">
+    <Component class="javax.swing.JButton" name="btnLoad">
       <Properties>
         <Property name="text" type="java.lang.String" value="Load"/>
         <Property name="toolTipText" type="java.lang.String" value="Load Data"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoadActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="addRecord">
+    <Component class="javax.swing.JButton" name="btnAddRecord">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add Record"/>
         <Property name="toolTipText" type="java.lang.String" value="Add Record"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addRecordActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddRecordActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="save">
+    <Component class="javax.swing.JButton" name="btnSave">
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
         <Property name="toolTipText" type="java.lang.String" value="Save Records"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="exit">
+    <Component class="javax.swing.JButton" name="btnExit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Exit"/>
         <Property name="toolTipText" type="java.lang.String" value="Exit"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="recordNumber">
+    <Component class="javax.swing.JLabel" name="lblRecordNumber">
       <Properties>
         <Property name="text" type="java.lang.String" value="Record Number"/>
       </Properties>

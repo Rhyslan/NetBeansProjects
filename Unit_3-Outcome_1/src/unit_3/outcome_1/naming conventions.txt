@@ -1,0 +1,26 @@
+Integer = intName
+Float = floName
+Double = dblName
+String = strName
+Boolean = blnName
+
+Multi Dimensional Array (String) = smaName
+
+Path = pthName
+
+InputStream = ismName
+BufferedReader = bfrName
+BufferedInputStream = bisName
+
+IOException = ioeName
+
+Label = lblName
+Combo Box = cmbName
+Text Field = txtName
+Button = btnName
+JFileChooser = jfcName
+
+Class = clsName
+Method = mthName
+
+Listener = lsnName

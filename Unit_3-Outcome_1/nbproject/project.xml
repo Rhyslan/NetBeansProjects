@@ -11,5 +11,21 @@
                 <root id="test.src.dir"/>
             </test-roots>
         </data>
+        <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>bfrVariable</word>
+            <word>blnVariable</word>
+            <word>BufferedReader</word>
+            <word>cmbVariable</word>
+            <word>dblVariable</word>
+            <word>floVariable</word>
+            <word>InputStream</word>
+            <word>intVariable</word>
+            <word>ioeVariable</word>
+            <word>IOException</word>
+            <word>ismVariable</word>
+            <word>pthVariable</word>
+            <word>smaVariable</word>
+            <word>strVariable</word>
+        </spellchecker-wordlist>
     </configuration>
 </project>
