@@ -506,7 +506,7 @@ public class UI_Design extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeading;
     private javax.swing.JLabel lblRecordNumber;
     private javax.swing.JTextField txtClass;
-    public javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
 }
