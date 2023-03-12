@@ -12,30 +12,18 @@ package unit_3.outcome_1;
  *      at a school.
  * 
  * + Functions:
- *      - Load:
- *          The program is able to load data from each line of a text (".txt") 
- *          file into a multi dimensional array, using a comma (",") and space 
- *          (" ") as the delimiter.
- *  
- *      - View:
- *          The data in the multi dimensional array can be displayed on the 
- *          screen in the appropriate text fields: "Name", "Class", "Year". The 
- *          currently viewed data entry can be selected via a combo box.
- * 
- *      - Add:
- *          The program has the ability to add new data entries to the array for 
- *          new students. New data can be entered in message windows that pop up 
- *          to prompt the user for new data.
- * 
- *      - Save:
- *          The program is able to save any newly added data to the file 
- *          containing the original records by overwriting the original file 
- *          with the updated data including the old and new data.
- * 
- *      - Exit:
- *          The program is able to warn the user of any unsaved data entries 
- *          when closing the window via either the "Exit" button or "X" on the 
- *          title bar.
+ *      The program is able to load data from each line of a text (".txt") file 
+ *       into a multi dimensional array, using a comma (",") and space (" ") as 
+ *       the delimiter. The data in the multi dimensional array can be displayed 
+ *       on the screen in the appropriate text fields: "Name", "Class", "Year". 
+ *       The currently viewed data entry can be selected via a combo box. The 
+ *       user can add new data entries to the array for new students. New data 
+ *       can be entered in message windows that pop up to prompt the user for 
+ *       new data. The program can save any newly added data to the file 
+ *       containing the original records by overwriting the original file with 
+ *       the updated data including the old and new data. The program is able to 
+ *       warn the user of any unsaved data entries when closing the window via 
+ *       either the "Exit" button or "X" on the title bar.
  * 
  * + Input:
  *      The program will prompt the user for a text (".txt") file when loading 
@@ -90,44 +78,26 @@ public class UI_Design extends javax.swing.JFrame {
     public UI_Design() {
         initComponents();
     }
-
-    
-    // <editor-fold defaultstate="collapsed" desc="clsGlobals Outline">
-    /**
-     * + Name: 
-     *      clsGlobals
-     * 
-     * + Short Description:
-     *      A subclass to store globally accessible variables and methods.
-     * 
-     * + Variables:
-     *      - masRecords:
-     *          A Multi-Dimensional Array to eventually contain the data records.
-     * 
-     *      - intFileLineCount:
-     *          An Integer to store how long the records file is based on the number of lines it contains.
-     * 
-     *      -pthDataFile:
-     *          A Path datatype to eventually store the path to the records file.
-     * 
-     *      -blnIsSaved:
-     *          A Boolean to record if there is any unsaved data that has been added to the record.
-     * 
-     * + Methods:
-     *      - mthGetFileLength():
-     *          A method used to set 'intFileLineCount' based on the parsed file path. Returns an Integer.
-     *      
-     *      - mthCreateNewArray:
-     *          A method to create and return a new array based on the parsed length. Returns a Multi-Dimensional Array with a size of "parsed length" by "3".
-     */
-    // </editor-fold>
     
     class clsGlobals{
+        /**
+         * Variables (respectively):
+         *  - A Multi-Dimensional Array to eventually contain the data records
+         *  - An Integer to store how long the records
+         *     file is based on the number of lines it contains
+         *  - A Path datatype to eventually store the path to the records file
+         *  - A Boolean to record if there is any unsaved data that has been 
+         *     added to the record
+         */
         private static String[][] masRecords;
         private static int intFileLineCount = 0;
         private static Path pthDataFile;
         private static boolean blnIsSaved = true;
         
+        /**
+         * A method used to set 'intFileLineCount' based on the parsed file 
+         * path. Returns an Integer
+         */
         public static int mthGetFileLength(Path pthFile) {
             intFileLineCount = 0;
             try {
@@ -145,6 +115,11 @@ public class UI_Design extends javax.swing.JFrame {
             return intFileLineCount;
         }
         
+        /** 
+         * A method to create and return a new array based on the parsed 
+         * length. Returns a Multi-Dimensional Array with a size of 
+         * ("parsed length" x "3")
+         */
         public static String[][] mthCreateNewArray(int intLength){
             masRecords = new String[intLength][3]; 
             
@@ -307,6 +282,11 @@ public class UI_Design extends javax.swing.JFrame {
     
     
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
+        /** 
+         * - Create a file browser to allow the user to select the records file
+         * - Store the path of the file a file is selected and cancel the 
+         *    operation if not
+         */
         JFileChooser jfcFileBrowser = new JFileChooser(System.getProperty("user.dir"));
         jfcFileBrowser.setSelectedFile(new File("records.txt"));
         jfcFileBrowser.addChoosableFileFilter(new FileNameExtensionFilter("Text Documents", "txt"));
@@ -324,6 +304,17 @@ public class UI_Design extends javax.swing.JFrame {
         String strCurrentLine;
         String strDelimiter = ", ";
         
+        /**
+         * (With error handling):
+         * - Load the selected file and create a new array based on the length 
+         *    of the loaded file
+         * - Loop through the line of the file to set the new array to the data 
+         *    within the file
+         * - Close the file and clear the record index combo box before adding 
+         *    indexes to it and setting the global array to the locally created 
+         *    array of loaded data
+         * - Catch any IO Exceptions and enable the add record button
+         */
         try {
             BufferedInputStream bisFileInput = new BufferedInputStream(Files.newInputStream(pthRecordFilePath));
             BufferedReader bfrFileReader = new BufferedReader(new InputStreamReader(bisFileInput));
@@ -358,6 +349,13 @@ public class UI_Design extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoadActionPerformed
 
     private void btnAddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRecordActionPerformed
+        /**
+         * - Prompt user for new data and load into separate variables
+         * - Load old and new data into arrays and combine them into a new, 
+         *    larger array
+         * - Update global array and set the saved state to false and enable the 
+         *    save button
+         */
         String strNewName = (String)JOptionPane.showInputDialog(null, "Name:");
         if ((strNewName == null)) return;
         
@@ -391,7 +389,7 @@ public class UI_Design extends javax.swing.JFrame {
 
         for (int i = 0; i < clsGlobals.masRecords.length; i++) {
             cmbRecordIndex.addItem(Integer.toString(i + 1));
-            System.out.println(Arrays.toString(clsGlobals.masRecords[i]));
+            // DEBUG: System.out.println(Arrays.toString(clsGlobals.masRecords[i]));
         }
         
         clsGlobals.blnIsSaved = false;
@@ -399,6 +397,9 @@ public class UI_Design extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddRecordActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        /**
+         * - Warn the user of any unsaved record when the exit button is pressed
+         */
         if (clsGlobals.blnIsSaved == false) {
             int intConfirmExit = (int) JOptionPane.showConfirmDialog(null, "Unsaved records!\nDo you wish to proceed?", "Unsaved Records", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
             if (intConfirmExit == 0) System.exit(0);
@@ -408,6 +409,10 @@ public class UI_Design extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void cmbRecordIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRecordIndexActionPerformed
+        /**
+         * - If the combo box has a selection, set the text fields to the 
+         *    appropriate data based on the combo box selection
+         */        
         if (cmbRecordIndex.getSelectedItem() != null) {
             txtName.setText(clsGlobals.masRecords[cmbRecordIndex.getSelectedIndex()][0]);
             txtClass.setText(clsGlobals.masRecords[cmbRecordIndex.getSelectedIndex()][1]);
@@ -416,6 +421,11 @@ public class UI_Design extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbRecordIndexActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        /**
+         * - Loop through the global array and write the data to new lines in the original records file
+         * - Notify the user of success and print any errors
+         * - Set the saved state to true and disable the save button
+         */
         try {
             FileWriter fwrFileWriter = new FileWriter(clsGlobals.pthDataFile.toString());
             String strData;
@@ -432,7 +442,7 @@ public class UI_Design extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "File Saved Successfully");  
         }
         catch (IOException ioeExcept) {
-            System.out.println("IO Exception in 'btnSaveActionPerformed: " + ioeExcept);
+            System.err.println("IO Exception in 'btnSaveActionPerformed: " + ioeExcept);
         }
         
         clsGlobals.blnIsSaved = true;
@@ -440,6 +450,10 @@ public class UI_Design extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void lsnWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_lsnWindowClosing
+        /**
+         * - Warn the user of any unsaved record when the "X" in the title bar 
+         *    is pressed.
+         */
         if (clsGlobals.blnIsSaved == false) {
             int intConfirmExit = (int) JOptionPane.showConfirmDialog(null, "Unsaved records!\nDo you wish to proceed?", "Unsaved Records", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
             if (intConfirmExit == 0) System.exit(0);

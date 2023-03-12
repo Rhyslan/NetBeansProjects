@@ -25,3 +25,8 @@ Class = clsName
 Method = mthName
 
 Listener = lsnName
+
+
+libre writer:
+font = Miriam Mono CLM
+size = 10px
