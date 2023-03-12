@@ -39,6 +39,7 @@ public class UI_Design extends javax.swing.JFrame {
         private static String[][] loadedData;
         private static int lines = 0;
         private static Path dataFile;
+        private static boolean saved = true;
         
         // Globally accessable file length
         public static int fileLength(Path file) {
@@ -85,7 +86,12 @@ public class UI_Design extends javax.swing.JFrame {
         exit = new javax.swing.JButton();
         recordNumber = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                exitListener(evt);
+            }
+        });
 
         jLabel1.setText("Heading: Name, Class, Year");
 
@@ -213,7 +219,7 @@ public class UI_Design extends javax.swing.JFrame {
 
     private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed
         // Path of the data file
-        JFileChooser fileBrowser = new JFileChooser("C:/Users/dylan/School/Year 12/Software Development/NetBeansProjects/Unit_3-Outcome_1/src/unit_3/outcome_1/");
+        JFileChooser fileBrowser = new JFileChooser(System.getProperty("user.dir"));
         fileBrowser.setSelectedFile(new File("record.txt"));
         fileBrowser.addChoosableFileFilter(new FileNameExtensionFilter("Text Documents", "txt"));
         fileBrowser.setAcceptAllFileFilterUsed(false);
@@ -223,6 +229,8 @@ public class UI_Design extends javax.swing.JFrame {
         if (r == JFileChooser.APPROVE_OPTION) {
             file = Paths.get(fileBrowser.getSelectedFile().getAbsolutePath());
             generateArray.dataFile = file;
+        } else {
+            return;
         }
         
         String s;
@@ -268,14 +276,13 @@ public class UI_Design extends javax.swing.JFrame {
     }//GEN-LAST:event_loadActionPerformed
 
     private void addRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecordActionPerformed
-        JFrame frame = new JFrame();
-        String newName = (String)JOptionPane.showInputDialog(frame, "Name:");
+        String newName = (String)JOptionPane.showInputDialog(null, "Name:");
         if ((newName == null)) return;
         
-        String newClass = (String)JOptionPane.showInputDialog(frame, "Class:");
+        String newClass = (String)JOptionPane.showInputDialog(null, "Class:");
         if ((newClass == null)) return;
         
-        String newYear = (String)JOptionPane.showInputDialog(frame, "Year:");
+        String newYear = (String)JOptionPane.showInputDialog(null, "Year:");
         if ((newYear == null)) return;
                 
         String[][] oldData = generateArray.loadedData;
@@ -306,11 +313,17 @@ public class UI_Design extends javax.swing.JFrame {
             System.out.println(Arrays.toString(generateArray.loadedData[i]));
         }
         
+        generateArray.saved = false;
         save.setEnabled(true);
     }//GEN-LAST:event_addRecordActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-        System.exit(0);
+        if (generateArray.saved == false) {
+            int confirmExit = (int) JOptionPane.showConfirmDialog(null, "Unsaved records!\nDo you wish to proceed?", "Unsaved Records", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+            if (confirmExit == 0) System.exit(0);
+        } else {
+            System.exit(0);
+        }
     }//GEN-LAST:event_exitActionPerformed
 
     private void recordNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordNumActionPerformed
@@ -336,14 +349,24 @@ public class UI_Design extends javax.swing.JFrame {
             }
             writer.close();
             
-            JFrame frame = new JFrame();
-            JOptionPane.showMessageDialog(frame, "File Saved Successfully");  
+            JOptionPane.showMessageDialog(null, "File Saved Successfully");  
         }
         catch (IOException e) {
             System.out.println("Message: " + e);
         }
+        
+        generateArray.saved = true;
         save.setEnabled(false);
     }//GEN-LAST:event_saveActionPerformed
+
+    private void exitListener(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_exitListener
+        if (generateArray.saved == false) {
+            int confirmExit = (int) JOptionPane.showConfirmDialog(null, "Unsaved records!\nDo you wish to proceed?", "Unsaved Records", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+            if (confirmExit == 0) System.exit(0);
+        } else {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_exitListener
 
     /**
      * @param args the command line arguments
