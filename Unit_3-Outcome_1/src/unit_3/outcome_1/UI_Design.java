@@ -390,7 +390,14 @@ public class UI_Design extends javax.swing.JFrame {
     }//GEN-LAST:event_exitListener
 
     private void nameSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameSortActionPerformed
-        // TODO add your handling code here:
+        System.out.println("a".compareTo("b")); // Less than (-1)
+        System.out.println("b".compareTo("a")); // Greater than (1)
+        System.out.println("a".compareTo("a")); // Equal to (0)
+        // This means the 'value' of strings increase as the letters progress through the alphabet
+        
+        String me = "Dylan";
+        String log = "Logan";
+        //System.out.println((me.charAt(0)).compareTo((log.charAt(0))));
     }//GEN-LAST:event_nameSortActionPerformed
 
     private void classSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classSortActionPerformed
