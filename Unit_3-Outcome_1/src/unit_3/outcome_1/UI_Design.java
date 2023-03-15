@@ -102,6 +102,49 @@ public class UI_Design extends javax.swing.JFrame {
         }
     }
     
+    class clsStringQuickSort{
+        private static String[][] arrNames;
+        private static int intLength;
+        
+        public static void mthSort(String[][] arrArray, int intSecondIndex) {
+            if (arrArray == null || arrArray.length == 0) return;
+            
+            arrNames = arrArray;
+            intLength = arrArray.length;
+            mthQuickSort(0, intLength - 1, intSecondIndex);
+        }
+        
+        private static void mthQuickSort(int intLowerIndex, int intHigherIndex, int intSecondIndex) {
+            int i = intLowerIndex;
+            int j = intHigherIndex;
+            String pivot = arrNames[intLowerIndex + (intHigherIndex - intLowerIndex) / 2][intSecondIndex];
+            
+            while (i <= j) {
+                while (arrNames[i][intSecondIndex].compareToIgnoreCase(pivot) < 0) i++;
+                
+                while (arrNames[j][intSecondIndex].compareToIgnoreCase(pivot) > 0) j--;
+                
+                if (i <= j) {
+                    mthExchangeNames(i, j);
+                    i++;
+                    j--;
+                }
+            }
+            
+            
+            
+            // call quicksort recursively
+            if (intLowerIndex > j) mthQuickSort(intLowerIndex, j, intSecondIndex);
+            if (i < intHigherIndex) mthQuickSort(i, intHigherIndex, intSecondIndex);
+        }
+        
+        private static void mthExchangeNames(int i, int j) {
+            String[] strTemp = arrNames[i];
+            arrNames[i] = arrNames[j];
+            arrNames[j] = strTemp;
+        }
+    }
+    
     
     
     /**
@@ -159,17 +202,17 @@ public class UI_Design extends javax.swing.JFrame {
         txtName.setEditable(false);
         txtName.setText("Empty");
         txtName.setToolTipText("Name");
-        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 70, -1));
+        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 110, -1));
 
         txtClass.setEditable(false);
         txtClass.setText("Empty");
         txtClass.setToolTipText("Class");
-        getContentPane().add(txtClass, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 70, -1));
+        getContentPane().add(txtClass, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 110, -1));
 
         txtYear.setEditable(false);
         txtYear.setText("Empty");
         txtYear.setToolTipText("Year");
-        getContentPane().add(txtYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 70, -1));
+        getContentPane().add(txtYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 110, -1));
 
         btnLoad.setText("Load");
         btnLoad.setToolTipText("Load Data");
@@ -223,7 +266,7 @@ public class UI_Design extends javax.swing.JFrame {
         getContentPane().add(btnEditRecord, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
 
         lblName.setText("Name");
-        getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
+        getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
 
         lblClass.setText("Class");
         getContentPane().add(lblClass, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
@@ -237,9 +280,14 @@ public class UI_Design extends javax.swing.JFrame {
                 btnNameSortActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNameSort, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 70, -1));
+        getContentPane().add(btnNameSort, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 70, -1));
 
         btnYearSort.setText("Sort");
+        btnYearSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYearSortActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnYearSort, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 70, -1));
 
         btnClassSort.setText("Sort");
@@ -248,7 +296,7 @@ public class UI_Design extends javax.swing.JFrame {
                 btnClassSortActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClassSort, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 70, -1));
+        getContentPane().add(btnClassSort, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 70, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -259,7 +307,7 @@ public class UI_Design extends javax.swing.JFrame {
          * - Store the path of the file a file is selected and cancel the 
          *    operation if not
          */
-        JFileChooser jfcFileBrowser = new JFileChooser(System.getProperty("user.dir"));
+        JFileChooser jfcFileBrowser = new JFileChooser(System.getProperty("user.dir") + "\\src\\unit_3\\outcome_1\\");
         jfcFileBrowser.setSelectedFile(new File("record.txt"));
         jfcFileBrowser.addChoosableFileFilter(new FileNameExtensionFilter("Text Documents", "txt"));
         jfcFileBrowser.setAcceptAllFileFilterUsed(false);
@@ -319,8 +367,14 @@ public class UI_Design extends javax.swing.JFrame {
         }
         
         
-        btnAddRecord.setEnabled(true);
-        btnEditRecord.setEnabled(true);
+        if (pthRecordFilePath != null) {
+            btnAddRecord.setEnabled(true);
+            btnEditRecord.setEnabled(true);
+        }
+        else if (pthRecordFilePath == null) {
+            btnAddRecord.setEnabled(false);
+            btnEditRecord.setEnabled(false);
+        }
     }//GEN-LAST:event_btnLoadActionPerformed
 
     private void btnAddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRecordActionPerformed
@@ -369,6 +423,7 @@ public class UI_Design extends javax.swing.JFrame {
         
         clsGlobals.blnIsSaved = false;
         btnSave.setEnabled(true);
+        cmbRecordIndex.setSelectedIndex(clsGlobals.masRecords.length - 1);
     }//GEN-LAST:event_btnAddRecordActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -444,7 +499,6 @@ public class UI_Design extends javax.swing.JFrame {
         cmbRecordIndex.setSelectedIndex(cmbRecordIndex.getSelectedIndex());
         
         btnSave.setEnabled(true);
-        btnEditRecord.setEnabled(false);
     }//GEN-LAST:event_btnEditRecordActionPerformed
 
     private void lsnWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_lsnWindowClosing
@@ -457,50 +511,70 @@ public class UI_Design extends javax.swing.JFrame {
     }//GEN-LAST:event_lsnWindowClosing
 
     private void btnNameSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNameSortActionPerformed
-        /**
-         * System.out.println("a".compareTo("b")); // Less than (-1)
-         * System.out.println("b".compareTo("a")); // Greater than (1)
-         * System.out.println("a".compareTo("a")); // Equal to (0)
-         * This means the 'value' of strings increase as the letters progress through the alphabet
-         */
-        
-        String me = "abcd";
-        String letter = "a";
-        String alphabet = "abcdefghijklmnopqrstuvwxyz";
-        
-        System.out.println("for abcd:\n");
-        
-        System.out.println("for a:");
-        
-        for (int i = 0; i < me.length(); i++) {
-            char meletter = me.charAt(i);
-            int compareTo = letter.compareTo(String.valueOf(meletter));
-            if (compareTo >= 0) {
-                System.out.println("pos: " + compareTo + " " + alphabet.charAt(Math.abs(compareTo)));
-            }
-            else {
-                System.out.println("neg: " + compareTo + " " + alphabet.charAt(Math.abs(compareTo)));
-            }
+        if (clsGlobals.masRecords == null) {
+            return;
         }
-        letter = "e";
         
-        System.out.println("\nfor e");
+        clsStringQuickSort sorter = new clsStringQuickSort();
+        String[][] words = new String[clsGlobals.masRecords.length][3];
         
-        for (int i = 0; i <me.length(); i++) {
-            char meletter = me.charAt(i);
-            int compareTo = letter.compareTo(String.valueOf(meletter));
-            if (compareTo >= 0) {
-                System.out.println("pos: " + compareTo + " " + alphabet.charAt(Math.abs(compareTo)));
-            }
-            else {
-                System.out.println("neg: " + compareTo + " " + alphabet.charAt(Math.abs(compareTo)));
-            }
+        for (int i = 0; i < clsGlobals.masRecords.length; i++) {
+            words[i] = clsGlobals.masRecords[i];
         }
+        
+        sorter.mthSort(words, 0);
+        
+        for (int i = 0; i < words.length; i++) {
+            clsGlobals.masRecords[i] = words[i];
+        }
+        
+        btnSave.setEnabled(true);
+        cmbRecordIndex.setSelectedIndex(cmbRecordIndex.getSelectedIndex());
     }//GEN-LAST:event_btnNameSortActionPerformed
 
     private void btnClassSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClassSortActionPerformed
-        // TODO add your handling code here:
+        if (clsGlobals.masRecords == null) {
+            return;
+        }
+        
+        clsStringQuickSort sorter = new clsStringQuickSort();
+        String[][] words = new String[clsGlobals.masRecords.length][3];
+        
+        for (int i = 0; i < clsGlobals.masRecords.length; i++) {
+            words[i] = clsGlobals.masRecords[i];
+        }
+        
+        sorter.mthSort(words, 1);
+        
+        for (int i = 0; i < words.length; i++) {
+            clsGlobals.masRecords[i] = words[i];
+        }
+        
+        btnSave.setEnabled(true);
+        cmbRecordIndex.setSelectedIndex(cmbRecordIndex.getSelectedIndex());
     }//GEN-LAST:event_btnClassSortActionPerformed
+
+    private void btnYearSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYearSortActionPerformed
+        if (clsGlobals.masRecords == null) {
+            return;
+        }
+        
+        clsStringQuickSort sorter = new clsStringQuickSort();
+        String[][] words = new String[clsGlobals.masRecords.length][3];
+        
+        for (int i = 0; i < clsGlobals.masRecords.length; i++) {
+            words[i] = clsGlobals.masRecords[i];
+        }
+        
+        sorter.mthSort(words, 2);
+        
+        for (int i = 0; i < words.length; i++) {
+            clsGlobals.masRecords[i] = words[i];
+        }
+        
+        btnSave.setEnabled(true);
+        cmbRecordIndex.setSelectedIndex(cmbRecordIndex.getSelectedIndex());
+    }//GEN-LAST:event_btnYearSortActionPerformed
 
     /**
      * @param args the command line arguments
