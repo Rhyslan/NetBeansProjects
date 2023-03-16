@@ -54,7 +54,7 @@ public class UI_Design extends javax.swing.JFrame {
         initComponents();
     }
     
-    class clsGlobals{
+    class clsGlobals {
         /**
          * Variables (respectively):
          *  - A Multi-Dimensional Array to eventually contain the data records
@@ -100,42 +100,72 @@ public class UI_Design extends javax.swing.JFrame {
             
             return masRecords;
         }
+        
+        public static String[][] mthReverseArray(String[][] arrInput, int intSubArrayIndex) {
+            String[][] b = new String[arrInput.length][3];
+            int j = arrInput.length;
+            for (int i = 0; i < arrInput.length; i++) {
+                b[j - 1][intSubArrayIndex] = arrInput[i][intSubArrayIndex];
+                j -= 1;
+            }
+            
+            return b;
+        }
     }
     
-    class clsStringQuickSort{
+    class clsStringQuickSort {
         private static String[][] arrNames;
         private static int intLength;
         
-        public static void mthSort(String[][] arrArray, int intSecondIndex) {
+        public static void mthSort(String[][] arrArray, int intSubArrayIndex) {
             if (arrArray == null || arrArray.length == 0) return;
             
             arrNames = arrArray;
             intLength = arrArray.length;
-            mthQuickSort(0, intLength - 1, intSecondIndex);
+            mthQuickSort(0, intLength - 1, intSubArrayIndex, 0);
         }
         
-        private static void mthQuickSort(int intLowerIndex, int intHigherIndex, int intSecondIndex) {
-            int i = intLowerIndex;
-            int j = intHigherIndex;
-            String pivot = arrNames[intLowerIndex + (intHigherIndex - intLowerIndex) / 2][intSecondIndex];
+        private static void mthQuickSort(int intLowerIndex, int intHigherIndex, int intSubArrayIndex, int intCharPosition) {
+            int intLow = intLowerIndex;
+            int intHigh = intHigherIndex;
+            String pivot = String.valueOf(arrNames[intLowerIndex + (intHigherIndex - intLowerIndex) / 2][intSubArrayIndex].charAt(0));
             
-            while (i <= j) {
-                while (arrNames[i][intSecondIndex].compareToIgnoreCase(pivot) < 0) i++;
+            while (intLow <= intHigh) {
+                while (String.valueOf(arrNames[intLow][intSubArrayIndex].charAt(intCharPosition)).compareToIgnoreCase(pivot) < 0) {
+                    intLow++;
+                }
                 
-                while (arrNames[j][intSecondIndex].compareToIgnoreCase(pivot) > 0) j--;
+                System.out.println();
                 
-                if (i <= j) {
-                    mthExchangeNames(i, j);
-                    i++;
-                    j--;
+                while (String.valueOf(arrNames[intHigh][intSubArrayIndex].charAt(intCharPosition)).compareToIgnoreCase(pivot) > 0) {
+                    intHigh--;
+                }
+                
+                if (intLow <= intHigh) {
+                    if (intLow != intHigh) {
+                        mthExchangeNames(intLow, intHigh);
+                    }
+                    intLow++;
+                    intHigh--;
                 }
             }
             
-            
-            
-            // call quicksort recursively
-            if (intLowerIndex > j) mthQuickSort(intLowerIndex, j, intSecondIndex);
-            if (i < intHigherIndex) mthQuickSort(i, intHigherIndex, intSecondIndex);
+            if (intCharPosition < arrNames[0][intSubArrayIndex].length() - 1) {
+                if (intLowerIndex < intHigh) {
+                    mthQuickSort(intLowerIndex, intHigh, intSubArrayIndex, intCharPosition);
+                }
+                if (intLow < intHigherIndex) {
+                    mthQuickSort(intLow, intHigherIndex, intSubArrayIndex, intCharPosition);
+                }
+            }
+            else {
+                if (intLowerIndex < intHigh) {
+                    mthQuickSort(intLowerIndex, intHigh, intSubArrayIndex, 0);
+                }
+                if (intLow < intHigherIndex) {
+                    mthQuickSort(intLow, intHigherIndex, intSubArrayIndex, 0);
+                }
+            }
         }
         
         private static void mthExchangeNames(int i, int j) {
@@ -145,7 +175,56 @@ public class UI_Design extends javax.swing.JFrame {
         }
     }
     
+    class clsIntegerQuickSort {
+        private static String[][] arrNumbers;
+        private static int intLength;
+        
+        public static void mthSort(String[][] arrArray, int intSubArrayIndex) {
+            if (arrArray == null || arrArray.length == 0) {
+                return;
+            }
+        
+            arrNumbers = arrArray;
+            intLength = arrArray.length;
+            mthQuickSort(0, intLength - 1, intSubArrayIndex);
+        }
+        
+        private static void mthQuickSort(int intLowerIndex, int intHigherIndex, int intSubArrayIndex) {
+        int intLow = intLowerIndex;
+        int intHigh = intHigherIndex;
+        int pivot = Integer.parseInt(arrNumbers[intLowerIndex + (intHigherIndex - intLowerIndex) / 2][2]);
+        
+        while (intLow <= intHigh) {
+            while (Integer.parseInt(arrNumbers[intLow][intSubArrayIndex]) < pivot) {
+                intLow++;
+            }
+            
+            while (Integer.parseInt(arrNumbers[intHigh][intSubArrayIndex]) > pivot) {
+                intHigh--;
+            }
+            
+            if (intLow <= intHigh) {
+                mthExchangeNumbers(intLow, intHigh);
+                intLow++;
+                intHigh--;
+            }
+        }
+        
+        // Recursively call quicksort
+        if (intLowerIndex < intHigh) {
+            mthQuickSort(intLowerIndex, intHigh, intSubArrayIndex);
+        }
+        if (intLow < intHigherIndex) {
+            mthQuickSort(intLow, intHigherIndex, intSubArrayIndex);
+        }
+    }
     
+        private static void mthExchangeNumbers(int i, int j) {
+        String temp[] = arrNumbers[i];
+        arrNumbers[i] = arrNumbers[j];
+        arrNumbers[j] = temp;
+    }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -514,18 +593,21 @@ public class UI_Design extends javax.swing.JFrame {
         if (clsGlobals.masRecords == null) {
             return;
         }
-        
-        clsStringQuickSort sorter = new clsStringQuickSort();
+
         String[][] words = new String[clsGlobals.masRecords.length][3];
         
         for (int i = 0; i < clsGlobals.masRecords.length; i++) {
             words[i] = clsGlobals.masRecords[i];
         }
         
-        sorter.mthSort(words, 0);
+        clsStringQuickSort.mthSort(words, 0);
         
         for (int i = 0; i < words.length; i++) {
             clsGlobals.masRecords[i] = words[i];
+        }
+        
+        for (int i = 0; i < clsGlobals.masRecords.length; i++) {
+            System.out.println(clsGlobals.mthReverseArray(clsGlobals.masRecords, 0)[i][0]);
         }
         
         btnSave.setEnabled(true);
@@ -537,14 +619,13 @@ public class UI_Design extends javax.swing.JFrame {
             return;
         }
         
-        clsStringQuickSort sorter = new clsStringQuickSort();
         String[][] words = new String[clsGlobals.masRecords.length][3];
         
         for (int i = 0; i < clsGlobals.masRecords.length; i++) {
             words[i] = clsGlobals.masRecords[i];
         }
         
-        sorter.mthSort(words, 1);
+        clsStringQuickSort.mthSort(words, 1);
         
         for (int i = 0; i < words.length; i++) {
             clsGlobals.masRecords[i] = words[i];
@@ -559,14 +640,13 @@ public class UI_Design extends javax.swing.JFrame {
             return;
         }
         
-        clsStringQuickSort sorter = new clsStringQuickSort();
         String[][] words = new String[clsGlobals.masRecords.length][3];
         
         for (int i = 0; i < clsGlobals.masRecords.length; i++) {
             words[i] = clsGlobals.masRecords[i];
         }
         
-        sorter.mthSort(words, 2);
+        clsIntegerQuickSort.mthSort(words, 2);
         
         for (int i = 0; i < words.length; i++) {
             clsGlobals.masRecords[i] = words[i];
