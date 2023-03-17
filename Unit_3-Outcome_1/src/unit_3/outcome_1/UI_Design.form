@@ -219,6 +219,7 @@
     <Component class="javax.swing.JButton" name="btnNameSort">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sort"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNameSortActionPerformed"/>
@@ -232,6 +233,7 @@
     <Component class="javax.swing.JButton" name="btnYearSort">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sort"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnYearSortActionPerformed"/>
@@ -245,6 +247,7 @@
     <Component class="javax.swing.JButton" name="btnClassSort">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sort"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClassSortActionPerformed"/>
@@ -261,6 +264,7 @@
           <ComponentRef name="bgpSortDirection"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Descending"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rtnDesActionPerformed"/>
@@ -278,6 +282,7 @@
         </Property>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Ascending"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rtnAscActionPerformed"/>

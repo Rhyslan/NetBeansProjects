@@ -354,6 +354,7 @@ public class UI_Design extends javax.swing.JFrame {
         getContentPane().add(lblYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
 
         btnNameSort.setText("Sort");
+        btnNameSort.setEnabled(false);
         btnNameSort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNameSortActionPerformed(evt);
@@ -362,6 +363,7 @@ public class UI_Design extends javax.swing.JFrame {
         getContentPane().add(btnNameSort, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 70, -1));
 
         btnYearSort.setText("Sort");
+        btnYearSort.setEnabled(false);
         btnYearSort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnYearSortActionPerformed(evt);
@@ -370,6 +372,7 @@ public class UI_Design extends javax.swing.JFrame {
         getContentPane().add(btnYearSort, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 70, -1));
 
         btnClassSort.setText("Sort");
+        btnClassSort.setEnabled(false);
         btnClassSort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClassSortActionPerformed(evt);
@@ -379,6 +382,7 @@ public class UI_Design extends javax.swing.JFrame {
 
         bgpSortDirection.add(rtnDes);
         rtnDes.setText("Descending");
+        rtnDes.setEnabled(false);
         rtnDes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rtnDesActionPerformed(evt);
@@ -389,6 +393,7 @@ public class UI_Design extends javax.swing.JFrame {
         bgpSortDirection.add(rtnAsc);
         rtnAsc.setSelected(true);
         rtnAsc.setText("Ascending");
+        rtnAsc.setEnabled(false);
         rtnAsc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rtnAscActionPerformed(evt);
@@ -473,12 +478,18 @@ public class UI_Design extends javax.swing.JFrame {
             btnEditRecord.setEnabled(true);
             rtnAsc.setEnabled(true);
             rtnDes.setEnabled(true);
+            btnNameSort.setEnabled(true);
+            btnClassSort.setEnabled(true);
+            btnYearSort.setEnabled(true);
         }
         else if (pthRecordFilePath == null) {
             btnAddRecord.setEnabled(false);
             btnEditRecord.setEnabled(false);
             rtnAsc.setEnabled(false);
             rtnDes.setEnabled(false);
+            btnNameSort.setEnabled(false);
+            btnClassSort.setEnabled(false);
+            btnYearSort.setEnabled(false);
         }
     }//GEN-LAST:event_btnLoadActionPerformed
 
@@ -619,18 +630,17 @@ public class UI_Design extends javax.swing.JFrame {
         if (clsGlobals.masRecords == null) {
             return;
         }
-
         String[][] words = new String[clsGlobals.masRecords.length][3];
         
-        for (int i = 0; i < clsGlobals.masRecords.length; i++) {
-            words[i] = clsGlobals.masRecords[i];
-        }
+        System.arraycopy(clsGlobals.masRecords, 0, words, 0, clsGlobals.masRecords.length);
         
         clsStringQuickSort.mthSort(words, 0);
         
-        for (int i = 0; i < words.length; i++) {
-            clsGlobals.masRecords[i] = words[i];
+        if (clsGlobals.intSortDirection == 1) {
+            words = clsGlobals.mthReverseArray(words);
         }
+        
+        System.arraycopy(words, 0, clsGlobals.masRecords, 0, words.length);
         
         btnSave.setEnabled(true);
         cmbRecordIndex.setSelectedIndex(cmbRecordIndex.getSelectedIndex());
@@ -643,64 +653,47 @@ public class UI_Design extends javax.swing.JFrame {
         
         String[][] words = new String[clsGlobals.masRecords.length][3];
         
-        for (int i = 0; i < clsGlobals.masRecords.length; i++) {
-            words[i] = clsGlobals.masRecords[i];
-        }
+        System.arraycopy(clsGlobals.masRecords, 0, words, 0, clsGlobals.masRecords.length);
         
         clsStringQuickSort.mthSort(words, 1);
         
-        for (int i = 0; i < words.length; i++) {
-            clsGlobals.masRecords[i] = words[i];
+        if (clsGlobals.intSortDirection == 1) {
+            words = clsGlobals.mthReverseArray(words);
         }
+        
+        System.arraycopy(words, 0, clsGlobals.masRecords, 0, words.length);
         
         btnSave.setEnabled(true);
         cmbRecordIndex.setSelectedIndex(cmbRecordIndex.getSelectedIndex());
     }//GEN-LAST:event_btnClassSortActionPerformed
 
     private void btnYearSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYearSortActionPerformed
-        rtnAsc.setSelected(true);
         if (clsGlobals.masRecords == null) {
             return;
         }
         
         String[][] words = new String[clsGlobals.masRecords.length][3];
         
-        for (int i = 0; i < clsGlobals.masRecords.length; i++) {
-            words[i] = clsGlobals.masRecords[i];
-        }
+        System.arraycopy(clsGlobals.masRecords, 0, words, 0, clsGlobals.masRecords.length);
         
         clsIntegerQuickSort.mthSort(words, 2);
         
-        for (int i = 0; i < words.length; i++) {
-            clsGlobals.masRecords[i] = words[i];
+        if (clsGlobals.intSortDirection == 1) {
+            words = clsGlobals.mthReverseArray(words);
         }
+        
+        System.arraycopy(words, 0, clsGlobals.masRecords, 0, words.length);
         
         btnSave.setEnabled(true);
         cmbRecordIndex.setSelectedIndex(cmbRecordIndex.getSelectedIndex());
     }//GEN-LAST:event_btnYearSortActionPerformed
 
     private void rtnAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rtnAscActionPerformed
-        if (clsGlobals.intSortDirection == 1) {
-            clsGlobals.mthReverseArray(clsGlobals.masRecords);
-        }
-        else if (clsGlobals.intSortDirection == 0) {
-            return;
-        }
-        else {
-            System.err.println("rtnAsc: The sort direction is not a valid direction/int!");
-        }
+        clsGlobals.intSortDirection = 0;
     }//GEN-LAST:event_rtnAscActionPerformed
 
     private void rtnDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rtnDesActionPerformed
-        if (clsGlobals.intSortDirection == 0) {
-            clsGlobals.mthReverseArray(clsGlobals.masRecords);
-        }
-        else if (clsGlobals.intSortDirection == 1) {
-            return;
-        }
-        else {
-            System.err.println("rtnDes: The sort direction is not a valid direction/int!");
-        }
+        clsGlobals.intSortDirection = 1;
     }//GEN-LAST:event_rtnDesActionPerformed
 
     /**
