@@ -68,6 +68,7 @@ public class UI_Design extends javax.swing.JFrame {
         private static int intFileLineCount = 0;
         private static Path pthDataFile;
         private static boolean blnIsSaved = true;
+        private static int intSortDirection = 0; // 0 = Ascending, 1 = Descending
         
         /**
          * A method used to set 'intFileLineCount' based on the parsed file
@@ -101,11 +102,11 @@ public class UI_Design extends javax.swing.JFrame {
             return masRecords;
         }
         
-        public static String[][] mthReverseArray(String[][] arrInput, int intSubArrayIndex) {
+        public static String[][] mthReverseArray(String[][] arrInput) {
             String[][] b = new String[arrInput.length][3];
             int j = arrInput.length;
             for (int i = 0; i < arrInput.length; i++) {
-                b[j - 1][intSubArrayIndex] = arrInput[i][intSubArrayIndex];
+                b[j - 1] = arrInput[i];
                 j -= 1;
             }
             
@@ -236,7 +237,7 @@ public class UI_Design extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToggleButton1 = new javax.swing.JToggleButton();
+        bgpSortDirection = new javax.swing.ButtonGroup();
         lblHeading = new javax.swing.JLabel();
         cmbRecordIndex = new javax.swing.JComboBox<>();
         txtName = new javax.swing.JTextField();
@@ -254,8 +255,9 @@ public class UI_Design extends javax.swing.JFrame {
         btnNameSort = new javax.swing.JButton();
         btnYearSort = new javax.swing.JButton();
         btnClassSort = new javax.swing.JButton();
-
-        jToggleButton1.setText("Edit Record");
+        rtnDes = new javax.swing.JRadioButton();
+        rtnAsc = new javax.swing.JRadioButton();
+        lblSortDirection = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -377,6 +379,28 @@ public class UI_Design extends javax.swing.JFrame {
         });
         getContentPane().add(btnClassSort, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 70, -1));
 
+        bgpSortDirection.add(rtnDes);
+        rtnDes.setText("Descending");
+        rtnDes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rtnDesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rtnDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, -1, -1));
+
+        bgpSortDirection.add(rtnAsc);
+        rtnAsc.setSelected(true);
+        rtnAsc.setText("Ascending");
+        rtnAsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rtnAscActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rtnAsc, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, -1, -1));
+
+        lblSortDirection.setText("Sort Direction:");
+        getContentPane().add(lblSortDirection, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -449,10 +473,14 @@ public class UI_Design extends javax.swing.JFrame {
         if (pthRecordFilePath != null) {
             btnAddRecord.setEnabled(true);
             btnEditRecord.setEnabled(true);
+            rtnAsc.setEnabled(true);
+            rtnDes.setEnabled(true);
         }
         else if (pthRecordFilePath == null) {
             btnAddRecord.setEnabled(false);
             btnEditRecord.setEnabled(false);
+            rtnAsc.setEnabled(false);
+            rtnDes.setEnabled(false);
         }
     }//GEN-LAST:event_btnLoadActionPerformed
 
@@ -606,10 +634,6 @@ public class UI_Design extends javax.swing.JFrame {
             clsGlobals.masRecords[i] = words[i];
         }
         
-        for (int i = 0; i < clsGlobals.masRecords.length; i++) {
-            System.out.println(clsGlobals.mthReverseArray(clsGlobals.masRecords, 0)[i][0]);
-        }
-        
         btnSave.setEnabled(true);
         cmbRecordIndex.setSelectedIndex(cmbRecordIndex.getSelectedIndex());
     }//GEN-LAST:event_btnNameSortActionPerformed
@@ -636,6 +660,7 @@ public class UI_Design extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClassSortActionPerformed
 
     private void btnYearSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYearSortActionPerformed
+        rtnAsc.setSelected(true);
         if (clsGlobals.masRecords == null) {
             return;
         }
@@ -655,6 +680,30 @@ public class UI_Design extends javax.swing.JFrame {
         btnSave.setEnabled(true);
         cmbRecordIndex.setSelectedIndex(cmbRecordIndex.getSelectedIndex());
     }//GEN-LAST:event_btnYearSortActionPerformed
+
+    private void rtnAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rtnAscActionPerformed
+        if (clsGlobals.intSortDirection == 1) {
+            clsGlobals.mthReverseArray(clsGlobals.masRecords);
+        }
+        else if (clsGlobals.intSortDirection == 0) {
+            return;
+        }
+        else {
+            System.err.println("rtnAsc: The sort direction is not a valid direction/int!");
+        }
+    }//GEN-LAST:event_rtnAscActionPerformed
+
+    private void rtnDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rtnDesActionPerformed
+        if (clsGlobals.intSortDirection == 0) {
+            clsGlobals.mthReverseArray(clsGlobals.masRecords);
+        }
+        else if (clsGlobals.intSortDirection == 1) {
+            return;
+        }
+        else {
+            System.err.println("rtnDes: The sort direction is not a valid direction/int!");
+        }
+    }//GEN-LAST:event_rtnDesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -692,6 +741,7 @@ public class UI_Design extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgpSortDirection;
     private javax.swing.JButton btnAddRecord;
     private javax.swing.JButton btnClassSort;
     private javax.swing.JButton btnEditRecord;
@@ -701,12 +751,14 @@ public class UI_Design extends javax.swing.JFrame {
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnYearSort;
     private javax.swing.JComboBox<String> cmbRecordIndex;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblClass;
     private javax.swing.JLabel lblHeading;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblRecordNumber;
+    private javax.swing.JLabel lblSortDirection;
     private javax.swing.JLabel lblYear;
+    private javax.swing.JRadioButton rtnAsc;
+    private javax.swing.JRadioButton rtnDes;
     private javax.swing.JTextField txtClass;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtYear;

@@ -16,6 +16,8 @@ Naming Conventions Key
 *  Combo Box = cmbName
 *  Text Field = txtName
 *  Button = btnName
+*  Radio Button = rtnName
+*  Button Group = bgpName
 *  JFileChooser = jfcName
 *  Class = clsName
 *  Method = mthName
