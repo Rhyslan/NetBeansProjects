@@ -136,8 +136,6 @@ public class UI_Design extends javax.swing.JFrame {
                     intLow++;
                 }
                 
-                System.out.println();
-                
                 while (String.valueOf(arrNames[intHigh][intSubArrayIndex].charAt(intCharPosition)).compareToIgnoreCase(pivot) > 0) {
                     intHigh--;
                 }
