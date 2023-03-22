@@ -75,11 +75,14 @@ public class UI_Design extends javax.swing.JFrame {
          * path. Returns an Integer
          */
         public static int mthGetFileLength(Path pthFile) {
+            // Reset the line count
             intFileLineCount = 0;
             try {
+                // Create file input and reader
                 InputStream ismFileInput = new BufferedInputStream(Files.newInputStream(pthFile));
                 BufferedReader bfrFileReader = new BufferedReader(new InputStreamReader(ismFileInput));
                 
+                // Loop through file to increase line count
                 while (bfrFileReader.readLine() != null) intFileLineCount++;
                 
                 ismFileInput.close();
@@ -103,43 +106,63 @@ public class UI_Design extends javax.swing.JFrame {
         }
         
         public static String[][] mthReverseArray(String[][] arrInput) {
-            String[][] b = new String[arrInput.length][3];
-            int j = arrInput.length;
-            for (int i = 0; i < arrInput.length; i++) {
-                b[j - 1] = arrInput[i];
-                j -= 1;
+            // Create new string and find length of input array
+            String[][] masReversed = new String[arrInput.length][3];
+            int intArrayLength  = arrInput.length;
+            
+            // Loop through array backwards moving the values in the temp array into the exsiting array
+            for (String[] arrInput1 : arrInput) {
+                masReversed[intArrayLength  - 1] = arrInput1;
+                intArrayLength  -= 1;
             }
             
-            return b;
+            return masReversed;
         }
     }
     
     class clsStringQuickSort {
+        // Local variables
         private static String[][] arrNames;
         private static int intLength;
         
         public static void mthSort(String[][] arrArray, int intSubArrayIndex) {
+            // Return if the array is unsable
             if (arrArray == null || arrArray.length == 0) return;
             
+            // Asign local variables
             arrNames = arrArray;
             intLength = arrArray.length;
+            
+            // Run quickSort algorithm
             mthQuickSort(0, intLength - 1, intSubArrayIndex, 0);
         }
         
+        /**
+         * intLowerIndex: start of array
+         * intHigherInded: array.length - 1
+         * intSubArrayIndex: Specify Name, Class or year
+         * intCharPosition: Which character of the string to start with
+         */
         private static void mthQuickSort(int intLowerIndex, int intHigherIndex, int intSubArrayIndex, int intCharPosition) {
+            // Asign low and high index values to ends of array
             int intLow = intLowerIndex;
             int intHigh = intHigherIndex;
+            
+            // Asign pivot to middle value or before if even
             String pivot = String.valueOf(arrNames[intLowerIndex + (intHigherIndex - intLowerIndex) / 2][intSubArrayIndex].charAt(0));
             
             while (intLow <= intHigh) {
+                // Loop to increase low for each value less than pivot to find lowest value
                 while (String.valueOf(arrNames[intLow][intSubArrayIndex].charAt(intCharPosition)).compareToIgnoreCase(pivot) < 0) {
                     intLow++;
                 }
                 
+                // Loop to increase high for each value higher than pivot to find highest value
                 while (String.valueOf(arrNames[intHigh][intSubArrayIndex].charAt(intCharPosition)).compareToIgnoreCase(pivot) > 0) {
                     intHigh--;
                 }
                 
+                // If the values are already 'sorted', move to next, otherwise swap them
                 if (intLow <= intHigh) {
                     if (intLow != intHigh) {
                         mthExchangeNames(intLow, intHigh);
@@ -149,6 +172,7 @@ public class UI_Design extends javax.swing.JFrame {
                 }
             }
             
+            // If the character position is less than the length of the 
             if (intCharPosition < arrNames[0][intSubArrayIndex].length() - 1) {
                 if (intLowerIndex < intHigh) {
                     mthQuickSort(intLowerIndex, intHigh, intSubArrayIndex, intCharPosition);
@@ -225,6 +249,31 @@ public class UI_Design extends javax.swing.JFrame {
     }
     }
     
+    class clsBinarySearch {
+        public static int mthSearch(String[] arrInput, String str) {
+            int l = 0;
+            int r = arrInput.length - 1;
+            
+            while (l <= r) {
+                int m = l + (r - l) / 2;
+                
+                int res = str.compareTo(arrInput[m]);
+                
+                if (res == 0) {
+                    return m;
+                }
+                
+                if (res > 0) {
+                    r = m + 1;
+                }
+                else {
+                    r = m - 1;
+                }
+            }
+            return -1;
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -256,6 +305,8 @@ public class UI_Design extends javax.swing.JFrame {
         rtnDes = new javax.swing.JRadioButton();
         rtnAsc = new javax.swing.JRadioButton();
         lblSortDirection = new javax.swing.JLabel();
+        txtSearchItem = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -403,6 +454,17 @@ public class UI_Design extends javax.swing.JFrame {
 
         lblSortDirection.setText("Sort Direction:");
         getContentPane().add(lblSortDirection, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, -1, -1));
+
+        txtSearchItem.setText("Search");
+        getContentPane().add(txtSearchItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, -1, -1));
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -576,10 +638,9 @@ public class UI_Design extends javax.swing.JFrame {
             FileWriter fwrFileWriter = new FileWriter(clsGlobals.pthDataFile.toString());
             String strData;
                     
-            for (int i = 0; i < clsGlobals.masRecords.length; i++) {
-                strData = Arrays.toString(clsGlobals.masRecords[i]);
+            for (String[] masRecord : clsGlobals.masRecords) {
+                strData = Arrays.toString(masRecord);
                 strData = strData.substring(1, strData.length() - 1);
-                
                 fwrFileWriter.write(strData);
                 fwrFileWriter.write("\n");
             }
@@ -696,6 +757,13 @@ public class UI_Design extends javax.swing.JFrame {
         clsGlobals.intSortDirection = 1;
     }//GEN-LAST:event_rtnDesActionPerformed
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String searchItem = txtSearchItem.getText();
+        String[] searchArray = clsGlobals.masRecords[0];
+        
+        System.out.println(clsBinarySearch.mthSearch(searchArray, searchItem));
+    }//GEN-LAST:event_btnSearchActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -740,6 +808,7 @@ public class UI_Design extends javax.swing.JFrame {
     private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnNameSort;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnYearSort;
     private javax.swing.JComboBox<String> cmbRecordIndex;
     private javax.swing.JLabel lblClass;
@@ -752,6 +821,7 @@ public class UI_Design extends javax.swing.JFrame {
     private javax.swing.JRadioButton rtnDes;
     private javax.swing.JTextField txtClass;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtSearchItem;
     private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
 }
