@@ -251,23 +251,23 @@ public class UI_Design extends javax.swing.JFrame {
     
     class clsBinarySearch {
         public static int mthSearch(String[] arrInput, String str) {
-            int l = 0;
-            int r = arrInput.length - 1;
+            int intLeft = 0;
+            int intRight = arrInput.length - 1;
             
-            while (l <= r) {
-                int m = l + (r - l) / 2;
+            while (intLeft <= intRight) {
+                int intCurrent = intLeft + (intRight - intLeft) / 2;
                 
-                int res = str.compareTo(arrInput[m]);
+                int intResult = str.compareToIgnoreCase(arrInput[intCurrent]);
                 
-                if (res == 0) {
-                    return m;
+                if (intResult == 0) {
+                    return intCurrent;
                 }
                 
-                if (res > 0) {
-                    r = m + 1;
+                if (intResult > 0) {
+                    intRight = intCurrent + 1;
                 }
                 else {
-                    r = m - 1;
+                    intRight = intCurrent - 1;
                 }
             }
             return -1;
@@ -758,10 +758,10 @@ public class UI_Design extends javax.swing.JFrame {
     }//GEN-LAST:event_rtnDesActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        String searchItem = txtSearchItem.getText();
+        String strSearchItem = txtSearchItem.getText();
         String[] searchArray = clsGlobals.masRecords[0];
         
-        System.out.println(clsBinarySearch.mthSearch(searchArray, searchItem));
+        System.out.println(clsBinarySearch.mthSearch(searchArray, strSearchItem));
     }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
