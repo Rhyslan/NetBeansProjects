@@ -251,14 +251,15 @@ public class UI_Design extends javax.swing.JFrame {
     }
     
     class clsBinarySearch {
-        public static int mthSearch(String[] sasInput, String strSearchItem, int intCharPosition) {
+        public static int mthStringSearch(String[] sasInput, String strSearchItem, int intCharPosition) {
             int intLeft = 0;
             int intRight = sasInput.length - 1;
             
             while (intLeft <= intRight) {
                 int intCurrent = intLeft + (intRight - intLeft) / 2;
                 
-                int intResult = String.valueOf(strSearchItem.charAt(intCharPosition)).compareToIgnoreCase(String.valueOf(sasInput[intCurrent].charAt(intCharPosition)));
+                String currentSubstring = sasInput[intCurrent].substring(intCharPosition);
+                int intResult = strSearchItem.compareToIgnoreCase(currentSubstring);
                 
                 if (intResult == 0) {
                     return intCurrent;
@@ -272,9 +273,31 @@ public class UI_Design extends javax.swing.JFrame {
                 }
             }
             
-            if (intCharPosition < )
             return -1;
         }
+        
+        public static int mthIntegerSearch(int[] saiInput, int intSearchItem, int intCharPosition) {
+            int intLeft = 0;
+            int intRight = saiInput.length - 1;
+            
+            while (intLeft <= intRight) {
+                int intCurrent = intLeft + (intRight - intLeft) / 2;
+                
+                if (saiInput[intCurrent] == intSearchItem) {
+                    return intCurrent;
+                }
+                
+                if (saiInput[intCurrent] < intSearchItem) {
+                    intLeft = intCurrent + 1;
+                }
+                else {
+                    intRight = intCurrent - 1;
+                }
+            }
+            
+            return -1;
+        }
+    
     }
     
     /**
@@ -808,21 +831,39 @@ public class UI_Design extends javax.swing.JFrame {
     }//GEN-LAST:event_rtnDesActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        String strSearchItem = txtSearchItem.getText();
-        
-        String[] array = new String[clsGlobals.masRecords.length];
-        
-        for (int i = 0; i < clsGlobals.masRecords.length; i++) {
-            array[i] = clsGlobals.masRecords[i][clsGlobals.intSearchOption];
-        }
-        
-        int intSearchItemIndex = clsBinarySearch.mthSearch(array, strSearchItem, 0);
-        
-        if (intSearchItemIndex != -1) {
-            cmbRecordIndex.setSelectedIndex(intSearchItemIndex);
+        if (clsGlobals.intSearchOption == 2) {
+            int intSearchItem = Integer.parseInt(txtSearchItem.getText());
+
+            int[] saiSearchContents = new int[clsGlobals.masRecords.length];
+            
+            for (int i = 0; i < clsGlobals.masRecords.length; i++) {
+                saiSearchContents[i] = Integer.parseInt(clsGlobals.masRecords[i][clsGlobals.intSearchOption]);
+            }
+            
+            int intSearchItemIndex = clsBinarySearch.mthIntegerSearch(saiSearchContents, intSearchItem, 0);
+            
+            if (intSearchItemIndex != -1) {
+                cmbRecordIndex.setSelectedIndex(intSearchItemIndex);
+            } else {
+                JOptionPane.showMessageDialog(null, "Search Item Not Found", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
         }
         else {
-            System.out.println("Not present");
+            String strSearchItem = txtSearchItem.getText();
+
+            String[] array = new String[clsGlobals.masRecords.length];
+            
+            for (int i = 0; i < clsGlobals.masRecords.length; i++) {
+                array[i] = clsGlobals.masRecords[i][clsGlobals.intSearchOption];
+            }
+            
+            int intSearchItemIndex = clsBinarySearch.mthStringSearch(array, strSearchItem, 0);
+            
+            if (intSearchItemIndex != -1) {
+                cmbRecordIndex.setSelectedIndex(intSearchItemIndex);
+            } else {
+                JOptionPane.showMessageDialog(null, "Search Item Not Found", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
