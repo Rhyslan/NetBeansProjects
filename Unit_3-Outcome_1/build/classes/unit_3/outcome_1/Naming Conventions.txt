@@ -6,6 +6,7 @@ Naming Conventions Key
 *  String = strName
 *  Boolean = blnName
 *  Multi-Dimensional Array (String) = masName
+*  Single-Dimensional Array (String) = sasName
 *  Path = pthName
 *  InputStream = ismName
 *  BufferedReader = bfrName

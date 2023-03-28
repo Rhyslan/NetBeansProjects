@@ -69,6 +69,7 @@ public class UI_Design extends javax.swing.JFrame {
         private static Path pthDataFile;
         private static boolean blnIsSaved = true;
         private static int intSortDirection = 0; // 0 = Ascending, 1 = Descending
+        private static int intSearchOption = 0; // 0 = Name, 1 = Class, 2 = Year
         
         /**
          * A method used to set 'intFileLineCount' based on the parsed file
@@ -105,14 +106,14 @@ public class UI_Design extends javax.swing.JFrame {
             return masRecords;
         }
         
-        public static String[][] mthReverseArray(String[][] arrInput) {
+        public static String[][] mthReverseArray(String[][] masInput) {
             // Create new string and find length of input array
-            String[][] masReversed = new String[arrInput.length][3];
-            int intArrayLength  = arrInput.length;
+            String[][] masReversed = new String[masInput.length][3];
+            int intArrayLength  = masInput.length;
             
             // Loop through array backwards moving the values in the temp array into the exsiting array
-            for (String[] arrInput1 : arrInput) {
-                masReversed[intArrayLength  - 1] = arrInput1;
+            for (String[] masInput1 : masInput) {
+                masReversed[intArrayLength  - 1] = masInput1;
                 intArrayLength  -= 1;
             }
             
@@ -122,16 +123,16 @@ public class UI_Design extends javax.swing.JFrame {
     
     class clsStringQuickSort {
         // Local variables
-        private static String[][] arrNames;
+        private static String[][] masNames;
         private static int intLength;
         
-        public static void mthSort(String[][] arrArray, int intSubArrayIndex) {
+        public static void mthSort(String[][] masArray, int intSubArrayIndex) {
             // Return if the array is unsable
-            if (arrArray == null || arrArray.length == 0) return;
+            if (masArray == null || masArray.length == 0) return;
             
             // Asign local variables
-            arrNames = arrArray;
-            intLength = arrArray.length;
+            masNames = masArray;
+            intLength = masArray.length;
             
             // Run quickSort algorithm
             mthQuickSort(0, intLength - 1, intSubArrayIndex, 0);
@@ -149,16 +150,16 @@ public class UI_Design extends javax.swing.JFrame {
             int intHigh = intHigherIndex;
             
             // Asign pivot to middle value or before if even
-            String pivot = String.valueOf(arrNames[intLowerIndex + (intHigherIndex - intLowerIndex) / 2][intSubArrayIndex].charAt(0));
+            String pivot = String.valueOf(masNames[intLowerIndex + (intHigherIndex - intLowerIndex) / 2][intSubArrayIndex].charAt(0));
             
             while (intLow <= intHigh) {
                 // Loop to increase low for each value less than pivot to find lowest value
-                while (String.valueOf(arrNames[intLow][intSubArrayIndex].charAt(intCharPosition)).compareToIgnoreCase(pivot) < 0) {
+                while (String.valueOf(masNames[intLow][intSubArrayIndex].charAt(intCharPosition)).compareToIgnoreCase(pivot) < 0) {
                     intLow++;
                 }
                 
                 // Loop to increase high for each value higher than pivot to find highest value
-                while (String.valueOf(arrNames[intHigh][intSubArrayIndex].charAt(intCharPosition)).compareToIgnoreCase(pivot) > 0) {
+                while (String.valueOf(masNames[intHigh][intSubArrayIndex].charAt(intCharPosition)).compareToIgnoreCase(pivot) > 0) {
                     intHigh--;
                 }
                 
@@ -173,7 +174,7 @@ public class UI_Design extends javax.swing.JFrame {
             }
             
             // If the character position is less than the length of the 
-            if (intCharPosition < arrNames[0][intSubArrayIndex].length() - 1) {
+            if (intCharPosition < masNames[0][intSubArrayIndex].length() - 1) {
                 if (intLowerIndex < intHigh) {
                     mthQuickSort(intLowerIndex, intHigh, intSubArrayIndex, intCharPosition);
                 }
@@ -192,37 +193,37 @@ public class UI_Design extends javax.swing.JFrame {
         }
         
         private static void mthExchangeNames(int i, int j) {
-            String[] strTemp = arrNames[i];
-            arrNames[i] = arrNames[j];
-            arrNames[j] = strTemp;
+            String[] strTemp = masNames[i];
+            masNames[i] = masNames[j];
+            masNames[j] = strTemp;
         }
     }
     
     class clsIntegerQuickSort {
-        private static String[][] arrNumbers;
+        private static String[][] masNumbers;
         private static int intLength;
         
-        public static void mthSort(String[][] arrArray, int intSubArrayIndex) {
-            if (arrArray == null || arrArray.length == 0) {
+        public static void mthSort(String[][] masArray, int intSubArrayIndex) {
+            if (masArray == null || masArray.length == 0) {
                 return;
             }
         
-            arrNumbers = arrArray;
-            intLength = arrArray.length;
+            masNumbers = masArray;
+            intLength = masArray.length;
             mthQuickSort(0, intLength - 1, intSubArrayIndex);
         }
         
         private static void mthQuickSort(int intLowerIndex, int intHigherIndex, int intSubArrayIndex) {
         int intLow = intLowerIndex;
         int intHigh = intHigherIndex;
-        int pivot = Integer.parseInt(arrNumbers[intLowerIndex + (intHigherIndex - intLowerIndex) / 2][2]);
+        int pivot = Integer.parseInt(masNumbers[intLowerIndex + (intHigherIndex - intLowerIndex) / 2][2]);
         
         while (intLow <= intHigh) {
-            while (Integer.parseInt(arrNumbers[intLow][intSubArrayIndex]) < pivot) {
+            while (Integer.parseInt(masNumbers[intLow][intSubArrayIndex]) < pivot) {
                 intLow++;
             }
             
-            while (Integer.parseInt(arrNumbers[intHigh][intSubArrayIndex]) > pivot) {
+            while (Integer.parseInt(masNumbers[intHigh][intSubArrayIndex]) > pivot) {
                 intHigh--;
             }
             
@@ -243,28 +244,28 @@ public class UI_Design extends javax.swing.JFrame {
     }
     
         private static void mthExchangeNumbers(int i, int j) {
-        String temp[] = arrNumbers[i];
-        arrNumbers[i] = arrNumbers[j];
-        arrNumbers[j] = temp;
+        String temp[] = masNumbers[i];
+        masNumbers[i] = masNumbers[j];
+        masNumbers[j] = temp;
     }
     }
     
     class clsBinarySearch {
-        public static int mthSearch(String[] arrInput, String str) {
+        public static int mthSearch(String[] sasInput, String strSearchItem, int intCharPosition) {
             int intLeft = 0;
-            int intRight = arrInput.length - 1;
+            int intRight = sasInput.length - 1;
             
             while (intLeft <= intRight) {
                 int intCurrent = intLeft + (intRight - intLeft) / 2;
                 
-                int intResult = str.compareToIgnoreCase(arrInput[intCurrent]);
+                int intResult = String.valueOf(strSearchItem.charAt(intCharPosition)).compareToIgnoreCase(String.valueOf(sasInput[intCurrent].charAt(intCharPosition)));
                 
                 if (intResult == 0) {
                     return intCurrent;
                 }
                 
                 if (intResult > 0) {
-                    intRight = intCurrent + 1;
+                    intLeft = intCurrent + 1;
                 }
                 else {
                     intRight = intCurrent - 1;
@@ -285,6 +286,7 @@ public class UI_Design extends javax.swing.JFrame {
     private void initComponents() {
 
         bgpSortDirection = new javax.swing.ButtonGroup();
+        bgpSearchSelection = new javax.swing.ButtonGroup();
         lblHeading = new javax.swing.JLabel();
         cmbRecordIndex = new javax.swing.JComboBox<>();
         txtName = new javax.swing.JTextField();
@@ -307,6 +309,9 @@ public class UI_Design extends javax.swing.JFrame {
         lblSortDirection = new javax.swing.JLabel();
         txtSearchItem = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
+        rtnNameSearch = new javax.swing.JRadioButton();
+        rtnClassSearch = new javax.swing.JRadioButton();
+        rtnYearSearch = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -456,15 +461,48 @@ public class UI_Design extends javax.swing.JFrame {
         getContentPane().add(lblSortDirection, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, -1, -1));
 
         txtSearchItem.setText("Search");
+        txtSearchItem.setEnabled(false);
         getContentPane().add(txtSearchItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, -1, -1));
 
         btnSearch.setText("Search");
+        btnSearch.setEnabled(false);
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
             }
         });
         getContentPane().add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, -1, -1));
+
+        bgpSearchSelection.add(rtnNameSearch);
+        rtnNameSearch.setSelected(true);
+        rtnNameSearch.setText("N");
+        rtnNameSearch.setEnabled(false);
+        rtnNameSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rtnNameSearchActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rtnNameSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
+
+        bgpSearchSelection.add(rtnClassSearch);
+        rtnClassSearch.setText("C");
+        rtnClassSearch.setEnabled(false);
+        rtnClassSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rtnClassSearchActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rtnClassSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, -1, -1));
+
+        bgpSearchSelection.add(rtnYearSearch);
+        rtnYearSearch.setText("Y");
+        rtnYearSearch.setEnabled(false);
+        rtnYearSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rtnYearSearchActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rtnYearSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -543,6 +581,11 @@ public class UI_Design extends javax.swing.JFrame {
             btnNameSort.setEnabled(true);
             btnClassSort.setEnabled(true);
             btnYearSort.setEnabled(true);
+            txtSearchItem.setEnabled(true);
+            btnSearch.setEnabled(true);
+            rtnNameSearch.setEnabled(true);
+            rtnClassSearch.setEnabled(true);
+            rtnYearSearch.setEnabled(true);
         }
         else if (pthRecordFilePath == null) {
             btnAddRecord.setEnabled(false);
@@ -552,6 +595,11 @@ public class UI_Design extends javax.swing.JFrame {
             btnNameSort.setEnabled(false);
             btnClassSort.setEnabled(false);
             btnYearSort.setEnabled(false);
+            txtSearchItem.setEnabled(true);
+            btnSearch.setEnabled(true);
+            rtnNameSearch.setEnabled(true);
+            rtnClassSearch.setEnabled(true);
+            rtnYearSearch.setEnabled(true);
         }
     }//GEN-LAST:event_btnLoadActionPerformed
 
@@ -759,10 +807,34 @@ public class UI_Design extends javax.swing.JFrame {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String strSearchItem = txtSearchItem.getText();
-        String[] searchArray = clsGlobals.masRecords[0];
         
-        System.out.println(clsBinarySearch.mthSearch(searchArray, strSearchItem));
+        String[] array = new String[clsGlobals.masRecords.length];
+        
+        for (int i = 0; i < clsGlobals.masRecords.length; i++) {
+            array[i] = clsGlobals.masRecords[i][clsGlobals.intSearchOption];
+        }
+        
+        int intSearchItemIndex = clsBinarySearch.mthSearch(array, strSearchItem, 0);
+        
+        if (intSearchItemIndex != -1) {
+            cmbRecordIndex.setSelectedIndex(intSearchItemIndex);
+        }
+        else {
+            System.out.println("Not present");
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void rtnNameSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rtnNameSearchActionPerformed
+        clsGlobals.intSearchOption = 0;
+    }//GEN-LAST:event_rtnNameSearchActionPerformed
+
+    private void rtnClassSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rtnClassSearchActionPerformed
+        clsGlobals.intSearchOption = 1;
+    }//GEN-LAST:event_rtnClassSearchActionPerformed
+
+    private void rtnYearSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rtnYearSearchActionPerformed
+        clsGlobals.intSearchOption = 2;
+    }//GEN-LAST:event_rtnYearSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -800,6 +872,7 @@ public class UI_Design extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgpSearchSelection;
     private javax.swing.ButtonGroup bgpSortDirection;
     private javax.swing.JButton btnAddRecord;
     private javax.swing.JButton btnClassSort;
@@ -818,7 +891,10 @@ public class UI_Design extends javax.swing.JFrame {
     private javax.swing.JLabel lblSortDirection;
     private javax.swing.JLabel lblYear;
     private javax.swing.JRadioButton rtnAsc;
+    private javax.swing.JRadioButton rtnClassSearch;
     private javax.swing.JRadioButton rtnDes;
+    private javax.swing.JRadioButton rtnNameSearch;
+    private javax.swing.JRadioButton rtnYearSearch;
     private javax.swing.JTextField txtClass;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtSearchItem;
