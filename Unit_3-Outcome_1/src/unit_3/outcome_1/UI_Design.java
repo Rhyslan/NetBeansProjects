@@ -486,6 +486,7 @@ public class UI_Design extends javax.swing.JFrame {
         getContentPane().add(lblSortDirection, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, -1, -1));
 
         txtSearchItem.setText("Search");
+        txtSearchItem.setToolTipText("Search Entry");
         txtSearchItem.setEnabled(false);
         getContentPane().add(txtSearchItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, -1, -1));
 
