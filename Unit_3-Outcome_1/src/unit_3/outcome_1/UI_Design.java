@@ -271,6 +271,8 @@ public class UI_Design extends javax.swing.JFrame {
                     intRight = intCurrent - 1;
                 }
             }
+            
+            if (intCharPosition < )
             return -1;
         }
     }
