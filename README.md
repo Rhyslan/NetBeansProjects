@@ -1,5 +1,5 @@
 # NetBeansProjects
 
 !THIS IS MY OWN CODE FOR MY PERSONAL EXPERIMENTATION!  
-The main code for Unit 3 Outcome 1 can be found [here](/Unit_3-Outcome_1/src/unit_3/outcome_1/UI_Design.java). Other projects can be found in the Projects directory.
+The main code for Unit 3 Outcome 1 can be found [here](/Unit_3-Outcome_1 - Python/main.py). Other projects can be found in the Projects directory.
 Please don't just copy the code.
