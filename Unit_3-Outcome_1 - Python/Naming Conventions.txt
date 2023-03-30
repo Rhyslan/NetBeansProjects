@@ -1,0 +1,25 @@
+/***********************************************
+*            NAMING CONVENTIONS KEY            *
+* ---------------------------------------------*
+*  Integer = intName                           *
+*  Float = floName                             *
+*  Double = dblName                            *
+*  String = strName                            *
+*  Boolean = blnName                           *
+*  Multi-Dimensional Array (String) = masName  *
+*  Path = pthName                              *
+*  InputStream = ismName                       *
+*  BufferedReader = bfrName                    *
+*  BufferedInputStream = bisName               *
+*  FileWriter = fwrName                        *
+*  IOException = ioeName                       *
+*  Label = lblName                             *
+*  Combo Box = cmbName                         *
+*  Text Field = txtName                        *
+*  Button = btnName                            *
+*  JFileChooser = jfcName                      *
+*  Class = clsName                             *
+*  Function = fncName                          *
+*  Listener = lsnName                          *
+*  File = filName                              *
+***********************************************/
