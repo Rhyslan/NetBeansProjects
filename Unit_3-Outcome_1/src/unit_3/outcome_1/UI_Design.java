@@ -13,26 +13,30 @@ package unit_3.outcome_1;
     /***********************************************
     *            NAMING CONVENTIONS KEY            *
     * ---------------------------------------------*
-    *  Integer = intName                           *
-    *  Float = floName                             *
-    *  Double = dblName                            *
-    *  String = strName                            *
-    *  Boolean = blnName                           *
-    *  Multi-Dimensional Array (String) = masName  *
-    *  Path = pthName                              *
-    *  InputStream = ismName                       *
-    *  BufferedReader = bfrName                    *
-    *  BufferedInputStream = bisName               *
-    *  FileWriter = fwrName                        *
-    *  IOException = ioeName                       *
-    *  Label = lblName                             *
-    *  Combo Box = cmbName                         * 
-    *  Text Field = txtName                        *
-    *  Button = btnName                            *
-    *  JFileChooser = jfcName                      *
-    *  Class = clsName                             *
-    *  Method = mthName                            *
-    *  Listener = lsnName                          *
+    *  Integer = intName
+    *  Float = floName
+    *  Double = dblName
+    *  String = strName
+    *  Boolean = blnName
+    *  Multi-Dimensional Array (String) = masName
+    *  Single-Dimensional Array (String) = sasName
+    *  Single-Dimensional Array (Integer) = saiName
+    *  Path = pthName
+    *  InputStream = ismName
+    *  BufferedReader = bfrName
+    *  BufferedInputStream = bisName
+    *  FileWriter = fwrName
+    *  IOException = ioeName
+    *  Label = lblName
+    *  Combo Box = cmbName
+    *  Text Field = txtName
+    *  Button = btnName
+    *  Radio Button = rtnName
+    *  Button Group = bgpName
+    *  JFileChooser = jfcName
+    *  Class = clsName
+    *  Method = mthName
+    *  Listener = lsnName
     ***********************************************/
 // </editor-fold>
 
