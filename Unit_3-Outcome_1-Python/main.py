@@ -1,5 +1,8 @@
 from RecordDisplay import *
 from RecordActions import *
+from Search import *
+from Sort import *
+
 
 # Constants
 N = tk.N
@@ -19,9 +22,9 @@ class Exit(tk.Tk):
         quit()
 
 
-class clsMainApplication(tk.Tk):
+class MainApplication(tk.Tk):
     def __init__(self):
-        super().__init__("clsMainApplication")
+        super().__init__("MainApplication")
 
         # Window Set Up
         self.title("Student Records")
@@ -41,16 +44,18 @@ class clsMainApplication(tk.Tk):
         self.nameItems = Name(self)
         self.classItems = Class(self)
         self.yearItems = Year(self)
-        self.load = Load(self)
+        self.load = Load(self, self)
         self.add = AddRecord(self)
         self.edit = EditRecord(self)
         self.save = SaveFile(self)
         self.exit = Exit(self)
+        self.search = Search(self)
+        self.sort = Sort(self)
 
     def fncExit(self):
         quit()
 
 
 if __name__ == "__main__":
-    root = clsMainApplication()
+    root = MainApplication()
     root.mainloop()

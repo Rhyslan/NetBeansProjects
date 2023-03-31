@@ -13,13 +13,13 @@ class RecordIndex(tk.Tk):
     def __init__(self, parent, *args, **kwargs):
         self.parent = parent
 
-        lblRecordIndex = tk.Label(self.parent, text="Record Index")
-        lblRecordIndex.grid(column=1, row=2, padx=5, pady=5)
+        self.lblRecordIndex = tk.Label(self.parent, text="Record Index")
+        self.lblRecordIndex.grid(column=1, row=2, padx=5, pady=5)
 
-        n = tk.IntVar()
-        cmbRecordIndex = ttk.Combobox(self.parent, textvariable=n)
-        cmbRecordIndex.set('Empty')  # Set values
-        cmbRecordIndex.grid(column=1, row=3, padx=5, pady=5)
+        values = ["Empty"]  # Set values
+        self.cmbRecordIndex = ttk.Combobox(self.parent, values=values, state='readonly')
+        self.cmbRecordIndex.current(0)
+        self.cmbRecordIndex.grid(column=1, row=3, padx=5, pady=5)
 
 
 class Name(tk.Tk):
