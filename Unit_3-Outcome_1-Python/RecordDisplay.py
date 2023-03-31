@@ -5,6 +5,7 @@ class RecordIndex(tk.Tk):
     def __init__(self, parent, cls_main):
         self.parent = parent
         self.cls_main = cls_main
+        self.cls_globals = Global()
 
         self.lblRecordIndex = tk.Label(self.parent, text="Record Index")
         self.lblRecordIndex.grid(column=1, row=2, padx=5, pady=5)
@@ -16,7 +17,8 @@ class RecordIndex(tk.Tk):
         self.cmbRecordIndex.grid(column=1, row=3, padx=5, pady=5)
 
     def _fnc_set_text_fields(self, *args, **kwargs):
-        self.cls_main.nameItems.txtName
+        print(self.cls_globals.masRecords)
+        #self.cls_main.nameItems.name_value.set(new_text)
 
 
 class Name(tk.Tk):
@@ -26,7 +28,8 @@ class Name(tk.Tk):
         self.lblName = tk.Label(self.parent, text="Name")
         self.lblName.grid(column=1, row=5, padx=5, pady=5)
 
-        self.txtName = ttk.Entry(self.parent)
+        self.name_value = tk.StringVar()
+        self.txtName = ttk.Entry(self.parent, textvariable=self.name_value)
         self.txtName.grid(column=1, row=6, columnspan=2, padx=5, pady=5)
         self.txtName.insert(0, "Empty")  # Set default value
 

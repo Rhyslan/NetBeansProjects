@@ -29,10 +29,14 @@ class Load(tk.Tk):
 
         for x in fil_opened_file:
             x = x.replace("\n", "")
-            self.clsGlobals.masRecords[int_record_index] = x.split(str_delimiter)
+            Global.masRecords.append(x.split(str_delimiter))
             int_record_index += 1
 
         fil_opened_file.close()
+
+        del Global.masRecords[0]
+
+        print(Global.masRecords)
 
         for i in range(len(self.clsGlobals.masRecords) - 1):
             if i == 0:
@@ -41,12 +45,17 @@ class Load(tk.Tk):
         self.clsMain.recordIndex.cmbRecordIndex.current(0)
 
 
+
 class AddRecord(tk.Tk):
     def __init__(self, parent):
         self.parent = parent
 
-        btn_add_record = tk.Button(self.parent, text="Add Record")
+        btn_add_record = tk.Button(self.parent, text="Add Record", command=self._print_it)
         btn_add_record.grid(column=0, row=13, padx=5, pady=1.5, sticky=N + S + E + W)
+
+    def _print_it(self):
+        self.cls_globals = Global()
+        print(Global.masRecords)
 
 
 class EditRecord(tk.Tk):

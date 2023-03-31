@@ -12,7 +12,7 @@ W = tk.W
 
 
 class Global:
-    masRecords = 0
+    masRecords = [[]]
     intFileLineCount = 0
     pthDataFile = ""
     blnIsSaved = True
