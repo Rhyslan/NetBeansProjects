@@ -6,15 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7388811e-692f-4e71-8f69-9371d3e0762a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Globals.py" beforeDir="false" afterPath="$PROJECT_DIR$/Globals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RecordActions.py" beforeDir="false" afterPath="$PROJECT_DIR$/RecordActions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RecordDisplay.py" beforeDir="false" afterPath="$PROJECT_DIR$/RecordDisplay.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Search.py" beforeDir="false" afterPath="$PROJECT_DIR$/Search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sort.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Unit_3-Outcome_1/build/classes/unit_3/outcome_1/UI_Design.form" beforeDir="false" afterPath="$PROJECT_DIR$/../Unit_3-Outcome_1/build/classes/unit_3/outcome_1/UI_Design.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Unit_3-Outcome_1/nbproject/private/private.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Unit_3-Outcome_1/nbproject/private/private.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Unit_3-Outcome_1/src/unit_3/outcome_1/UI_Design.form" beforeDir="false" afterPath="$PROJECT_DIR$/../Unit_3-Outcome_1/src/unit_3/outcome_1/UI_Design.form" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
