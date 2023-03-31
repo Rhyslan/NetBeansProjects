@@ -1,4 +1,17 @@
-class Global():
+import tkinter as tk
+from tkinter import ttk
+from tkinter import filedialog
+import os
+
+
+# Constants
+N = tk.N
+S = tk.S
+E = tk.E
+W = tk.W
+
+
+class Global:
     masRecords = 0
     intFileLineCount = 0
     pthDataFile = ""
@@ -7,13 +20,13 @@ class Global():
     intSearchOption = 0  # 0 = Name, 1 = Class, 2 = Year
 
     @staticmethod
-    def mthGetFileLength(pthFile):
-        intFileLineCount = 0
-        filOpenedFile = open(pthFile)
+    def mth_get_file_length(pth_file):
+        int_file_line_count = 0
+        fil_opened_file = open(pth_file)
 
-        for x in filOpenedFile:
-            intFileLineCount += 1
+        for _ in fil_opened_file:
+            int_file_line_count += 1
 
-        filOpenedFile.close()
+        fil_opened_file.close()
 
-        return intFileLineCount
+        return int_file_line_count

@@ -1,8 +1,8 @@
-import tkinter as tk
+from Globals import *
 
 
 class Sort(tk.Tk):
-    def __init__(self, parent, *args, **kwargs):
+    def __init__(self, parent):
         self.parent = parent
 
         self.lblSortDirection = tk.Label(self.parent, text="Sort Direction")

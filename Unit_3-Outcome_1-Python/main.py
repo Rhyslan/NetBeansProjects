@@ -1,24 +1,20 @@
+from Globals import *
+
 from RecordDisplay import *
 from RecordActions import *
 from Search import *
 from Sort import *
 
 
-# Constants
-N = tk.N
-S = tk.S
-E = tk.E
-W = tk.W
-
-
 class Exit(tk.Tk):
-    def __init__(self, parent, *args, **kwargs):
+    def __init__(self, parent):
         self.parent = parent
 
-        btnExit = tk.Button(self.parent, text="Exit", command=self.fncExit)
-        btnExit.grid(column=9, row=13, padx=5, pady=5)
+        btn_exit = tk.Button(self.parent, text="Exit", command=self.fnc_exit)
+        btn_exit.grid(column=9, row=13, padx=5, pady=5)
 
-    def fncExit(self):
+    @staticmethod
+    def fnc_exit():
         quit()
 
 
@@ -37,10 +33,8 @@ class MainApplication(tk.Tk):
         self.lblHeading = tk.Label(self, text="Heading")
         self.lblHeading.grid(column=0, row=0, columnspan=9, padx=5, pady=5)
 
-
-
         # Add widgets from classes
-        self.recordIndex = RecordIndex(self)
+        self.recordIndex = RecordIndex(self, self)
         self.nameItems = Name(self)
         self.classItems = Class(self)
         self.yearItems = Year(self)
@@ -51,9 +45,6 @@ class MainApplication(tk.Tk):
         self.exit = Exit(self)
         self.search = Search(self)
         self.sort = Sort(self)
-
-    def fncExit(self):
-        quit()
 
 
 if __name__ == "__main__":

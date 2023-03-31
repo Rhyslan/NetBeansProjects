@@ -1,7 +1,8 @@
-import tkinter as tk
+from Globals import *
+
 
 class Search(tk.Tk):
-    def __init__(self, parent, *args, **kwargs):
+    def __init__(self, parent):
         self.parent = parent
 
         self.txtSearchEntry = tk.Entry(self.parent)
@@ -19,3 +20,21 @@ class Search(tk.Tk):
 
         self.rtnYearSearch = tk.Radiobutton(self.parent, text="Year", value=3)
         self.rtnYearSearch.grid(column=7, row=11, padx=5, pady=5)
+
+
+def fnc_search(sas_input, str_search_item):
+    int_left = 0
+    int_right = len(sas_input) - 1
+
+    while int_left <= int_right:
+        int_current = int_left + (int_right - int_left) / 2
+
+        if str_search_item == sas_input[int_current]:
+            return int_current
+
+        if str_search_item > sas_input[int_current]:
+            int_left = int_current + 1
+        else:
+            int_right = int_current - 1
+
+    return -1
