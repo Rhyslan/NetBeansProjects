@@ -1,3 +1,5 @@
+import tkinter.scrolledtext
+
 from Globals import *
 
 
@@ -13,12 +15,13 @@ class RecordIndex(tk.Tk):
         values = ["Empty"]  # Set values
         self.cmbRecordIndex = ttk.Combobox(self.parent, values=values, state='readonly')
         self.cmbRecordIndex.current(0)
-        self.cmbRecordIndex.bind('<<ComboboxSelected>>', self._fnc_set_text_fields)
+        self.cmbRecordIndex.bind('<<ComboboxSelected>>', self.fnc_set_text_fields)
         self.cmbRecordIndex.grid(column=1, row=3, padx=5, pady=5)
 
-    def _fnc_set_text_fields(self, *args, **kwargs):
-        print(self.cls_globals.masRecords)
-        #self.cls_main.nameItems.name_value.set(new_text)
+    def fnc_set_text_fields(self, *args, **kwargs):
+        self.cls_main.nameItems.name_value.set(self.cls_globals.masRecords[self.cmbRecordIndex.current()][0])
+        self.cls_main.classItems.class_value.set(self.cls_globals.masRecords[self.cmbRecordIndex.current()][1])
+        self.cls_main.yearItems.year_value.set(self.cls_globals.masRecords[self.cmbRecordIndex.current()][2])
 
 
 class Name(tk.Tk):
@@ -49,7 +52,8 @@ class Class(tk.Tk):
         self.lblClass = tk.Label(self.parent, text="Class")
         self.lblClass.grid(column=4, row=5, padx=5, pady=5)
 
-        self.txtClass = tk.Entry(self.parent)
+        self.class_value = tk.StringVar()
+        self.txtClass = tk.Entry(self.parent, textvariable=self.class_value)
         self.txtClass.grid(column=4, row=6, columnspan=2, padx=5, pady=5)
         self.txtClass.insert(0, "Empty")  # Set default value
 
@@ -69,7 +73,8 @@ class Year(tk.Tk):
         self.lblYear = tk.Label(self.parent, text="Year")
         self.lblYear.grid(column=7, row=5, padx=5, pady=5)
 
-        self.txtYear = tk.Entry(self.parent)
+        self.year_value = tk.StringVar()
+        self.txtYear = tk.Entry(self.parent, textvariable=self.year_value)
         self.txtYear.grid(column=7, row=6, columnspan=2, padx=5, pady=5)
         self.txtYear.insert(0, "Empty")  # Set default value
 

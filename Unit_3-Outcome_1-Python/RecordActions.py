@@ -36,13 +36,13 @@ class Load(tk.Tk):
 
         del Global.masRecords[0]
 
-        print(Global.masRecords)
-
         for i in range(len(self.clsGlobals.masRecords) - 1):
             if i == 0:
                 self.clsMain.recordIndex.cmbRecordIndex['values'] = (i + 1,)
             self.clsMain.recordIndex.cmbRecordIndex['values'] += (i + 2,)
         self.clsMain.recordIndex.cmbRecordIndex.current(0)
+
+        self.clsMain.recordIndex.fnc_set_text_fields()
 
 
 
@@ -50,12 +50,8 @@ class AddRecord(tk.Tk):
     def __init__(self, parent):
         self.parent = parent
 
-        btn_add_record = tk.Button(self.parent, text="Add Record", command=self._print_it)
+        btn_add_record = tk.Button(self.parent, text="Add Record")
         btn_add_record.grid(column=0, row=13, padx=5, pady=1.5, sticky=N + S + E + W)
-
-    def _print_it(self):
-        self.cls_globals = Global()
-        print(Global.masRecords)
 
 
 class EditRecord(tk.Tk):
