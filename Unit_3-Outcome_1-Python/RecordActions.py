@@ -47,11 +47,34 @@ class Load(tk.Tk):
 
 
 class AddRecord(tk.Tk):
-    def __init__(self, parent):
+    def __init__(self, parent, cls_main):
         self.parent = parent
+        self.cls_main = cls_main
 
-        btn_add_record = tk.Button(self.parent, text="Add Record")
+        btn_add_record = tk.Button(self.parent, text="Add Record", command=self._add_record)
         btn_add_record.grid(column=0, row=13, padx=5, pady=1.5, sticky=N + S + E + W)
+
+    def _add_record(self):
+        new_name = simpledialog.askstring(title="Test",
+                                          prompt="What's your Name?:")
+        print(new_name)
+
+        new_class = simpledialog.askstring(title="Test",
+                                          prompt="What's your Class?:")
+        print(new_class)
+
+        new_year = simpledialog.askstring(title="Test",
+                                          prompt="What's your Year?:")
+        print(new_year)
+
+        Global.masRecords.append([new_name, new_class, new_year])
+
+        for i in range(len(Global.masRecords) - 1):
+            if i == 0:
+                self.clsMain.recordIndex.cmbRecordIndex['values'] = (i + 1,)
+            self.clsMain.recordIndex.cmbRecordIndex['values'] += (i + 2,)
+        self.clsMain.recordIndex.cmbRecordIndex.current(len(self.cls_main.recordIndex.cmbRecordIndex['values']) - 1)
+
 
 
 class EditRecord(tk.Tk):

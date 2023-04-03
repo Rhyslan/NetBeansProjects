@@ -39,7 +39,7 @@ class MainApplication(tk.Tk):
         self.classItems = Class(self)
         self.yearItems = Year(self)
         self.load = Load(self, self)
-        self.add = AddRecord(self)
+        self.add = AddRecord(self, self)
         self.edit = EditRecord(self)
         self.save = SaveFile(self)
         self.exit = Exit(self)
