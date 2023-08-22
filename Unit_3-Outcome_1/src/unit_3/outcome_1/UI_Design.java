@@ -47,7 +47,6 @@ import java.util.Arrays;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.lang.Math;
 
 public class UI_Design extends javax.swing.JFrame {
 
