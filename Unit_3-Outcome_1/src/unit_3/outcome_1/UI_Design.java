@@ -2,9 +2,6 @@ package unit_3.outcome_1;
 
 // <editor-fold defaultstate="collapsed" desc="Program Outline">
 /**
- *
- * + Author: 
- *      Dylan Musgrave (MUS0013)
  * 
  * + Short Description: 
  *      A java program utilising Swing JFrame to provide an interface to load, 
