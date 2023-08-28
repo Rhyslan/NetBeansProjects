@@ -6,10 +6,6 @@ package assignvolunteer4;
 
 import java.util.Scanner;
 
-/**
- *
- * @author dylan
- */
 public class AssignVolunteer4 {
 
     /**
