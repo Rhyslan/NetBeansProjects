@@ -4,10 +4,6 @@
  */
 package unit_3.outcome_1;
 
-/**
- *
- * @author dylan
- */
 
 // <editor-fold defaultstate="collapsed" desc="Naming Conventions Key">
     /***********************************************
